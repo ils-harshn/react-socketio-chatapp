@@ -27,3 +27,14 @@ export const verifyEmail = async (data) => {
   const response = await api.request(config);
   return response;
 };
+
+export const login = async (data) => {
+  let config = {
+    method: "post",
+    url: API_ENDPOINTS.LOGIN,
+    data: data,
+  };
+
+  const response = await api.request(config);
+  return response;
+};

@@ -7,6 +7,8 @@ import ROUTES from "../../router/ROUTES";
 import styles from "./login.module.css";
 import { LoginSchema } from "../../formSchemas/AuthFormsSchemas";
 import FormInputError from "../../components/Error";
+import { useLoginMutation } from "../../api/auth/queryHooks";
+import notify from "../../utils/notify";
 
 const LoginFooter = () => {
   return (
@@ -20,13 +22,25 @@ const LoginFooter = () => {
 };
 
 const LoginForm = () => {
+  const { mutate, isLoading } = useLoginMutation({
+    onSuccess: (data) => {
+      console.log(data);
+      notify.success(`Logged in successfully`);
+    },
+    onError: (error) => {
+      notify.error(`${error.response.data.message}`);
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: LoginSchema,
-    onSubmit: (values, actions) => {},
+    onSubmit: (values, actions) => {
+      mutate(values);
+    },
   });
 
   return (
@@ -72,7 +86,9 @@ const LoginForm = () => {
           )}
         </div>
         <div>
-          <Button type="submit">Sign In</Button>
+          <Button type="submit">
+            {isLoading ? "Please wait..." : "Sign In"}
+          </Button>
         </div>
       </form>
     </div>
