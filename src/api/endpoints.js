@@ -1,5 +1,5 @@
 const API_ENDPOINTS = {
-  REGISTER: "/users/register",
+  REGISTER: "/user/register",
 };
 
 export default API_ENDPOINTS;

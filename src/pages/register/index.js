@@ -21,9 +21,10 @@ const RegisterFooter = () => {
 };
 
 const RegisterForm = () => {
-  const { mutate, isLoading, isError } = useRegisterMutation({
+  const { mutate, isLoading } = useRegisterMutation({
     onSuccess: (data) => {
       console.log(data);
+      console.log(formik);
     },
   });
 
@@ -40,8 +41,6 @@ const RegisterForm = () => {
       mutate(values);
     },
   });
-
-  if (isError) return <div>Something went wrong</div>;
 
   return (
     <div className={`${styles.formContainer}`}>

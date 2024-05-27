@@ -9,5 +9,5 @@ export const register = async (data) => {
   };
 
   const response = await api.request(config);
-  return response.data;
+  return response;
 };
