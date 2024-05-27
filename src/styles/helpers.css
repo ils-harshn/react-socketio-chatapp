@@ -1,0 +1,20 @@
+.full-screen-center {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.full-screen-jcenter {
+  display: flex;
+  justify-content: center;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}

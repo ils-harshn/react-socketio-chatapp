@@ -1,0 +1,19 @@
+.textInput {
+  color: var(--text-input-color);
+  background-color: var(--text-input-bg-color);
+  outline: none;
+  border: 1px solid var(--text-input-b-color);
+  border-radius: 6px;
+}
+
+.textInput:focus {
+  outline: 3px solid var(--text-input-outline-focus-color);
+}
+
+.textInput:global.sm {
+  padding: 5px 12px;
+}
+
+.textInput:global.full {
+  width: calc(100% - 26px);
+}

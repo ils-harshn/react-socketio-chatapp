@@ -3,8 +3,21 @@
 @import url("./themes/dark.css");
 @import url("./themes/ano.css");
 
+:root {
+  --font-family: "Lato", sans-serif;
+}
+
 body {
   padding: 0;
   margin: 0;
   background-color: var(--background-color);
 }
+
+* {
+  padding: 0;
+  margin: 0;
+  color: var(--font-color);
+  font-family: var(--font-family);
+}
+
+@import url("./helpers.css");

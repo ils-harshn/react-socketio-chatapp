@@ -1,4 +1,6 @@
-:root,
 body[theme="light"] {
-  --background-color: white;
+  --background-color: rgb(255, 255, 255);
+  --font-color: rgb(0, 0, 0);
+  --form-container-bg: rgb(22, 27, 34);
+  --form-container-b-color: rgb(22, 27, 34);
 }

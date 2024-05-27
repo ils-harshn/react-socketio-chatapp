@@ -1,3 +1,12 @@
 body[theme="dark"] {
-  --background-color: rgb(35, 35, 35);
+  --background-color: rgb(0, 0, 0);
+  --font-color: white;
+  --form-container-bg: rgb(22, 27, 34);
+  --form-container-b-color: rgba(48, 54, 61, 0.7);
+
+  /* text input */
+  --text-input-color: rgb(255, 255, 255);
+  --text-input-bg-color: rgba(70, 90, 126, 0.4);
+  --text-input-b-color: rgb(48, 54, 61);
+  --text-input-outline-focus-color: rgb(34, 100, 200);
 }
