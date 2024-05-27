@@ -1,0 +1,14 @@
+.Footer {
+  padding: 40px;
+  margin-top: 40px;
+}
+
+.Links {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+
+.Link {
+  margin: 0 8px 0 8px;
+}
