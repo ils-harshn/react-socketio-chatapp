@@ -1,7 +1,12 @@
+import { BaseQueryProvider } from "./api";
 import Router from "./router";
 
 function App() {
-  return <Router />;
+  return (
+    <BaseQueryProvider>
+      <Router />
+    </BaseQueryProvider>
+  );
 }
 
 export default App;
