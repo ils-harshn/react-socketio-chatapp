@@ -1,4 +1,5 @@
 import api from "..";
+import API_ENDPOINTS from "../endpoints";
 
 export const register = async (data) => {
   let config = {

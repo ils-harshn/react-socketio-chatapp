@@ -7,6 +7,7 @@ import ROUTES from "../../router/ROUTES";
 import styles from "./register.module.css";
 import { RegisterSchema } from "../../formSchemas/AuthFormsSchemas";
 import FormInputError from "../../components/Error";
+import { useRegisterMutation } from "../../api/auth/queryHooks";
 
 const RegisterFooter = () => {
   return (
@@ -20,6 +21,12 @@ const RegisterFooter = () => {
 };
 
 const RegisterForm = () => {
+  const { mutate, isLoading, isError } = useRegisterMutation({
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,10 +37,12 @@ const RegisterForm = () => {
     },
     validationSchema: RegisterSchema,
     onSubmit: (values, action) => {
-      console.log(values);
-      action.resetForm();
+      mutate(values);
     },
   });
+
+  if (isError) return <div>Something went wrong</div>;
+
   return (
     <div className={`${styles.formContainer}`}>
       <form onSubmit={formik.handleSubmit}>
@@ -129,8 +138,8 @@ const RegisterForm = () => {
           )}
         </div>
         <div>
-          <Button type="submit" disabled={formik.isSubmitting}>
-            Sign Up
+          <Button type="submit" disabled={formik.isSubmitting || isLoading}>
+            {isLoading ? "Please Wait..." : "Sign In"}
           </Button>
         </div>
       </form>
