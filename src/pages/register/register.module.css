@@ -17,3 +17,9 @@
   height: 200px;
   padding: 16px;
 }
+
+.forgetPassword {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

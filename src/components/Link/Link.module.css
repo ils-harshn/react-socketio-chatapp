@@ -1,0 +1,8 @@
+.Link {
+  color: rgb(68, 147, 248);
+  text-decoration: none;
+}
+
+.Link:global.sm {
+  font-size: 12px;
+}
