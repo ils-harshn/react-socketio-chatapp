@@ -6,12 +6,14 @@ const Button = ({
   varient = "primary",
   width = "full",
   size = "md",
+  ...props
 }) => {
   return (
     <button
       className={`${className || ""} ${
         styles.Button
       } ${size} ${varient} ${width}`}
+      {...props}
     >
       {children}
     </button>

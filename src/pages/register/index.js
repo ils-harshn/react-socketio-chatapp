@@ -49,7 +49,9 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
           ></TextInput>
           {formik.touched.email && formik.errors.email && (
-            <FormInputError className="mt-4">{formik.errors.email}</FormInputError>
+            <FormInputError className="mt-4">
+              {formik.errors.email}
+            </FormInputError>
           )}
         </div>
         <div className={`${styles.nameContainer} mb-16`}>
@@ -65,7 +67,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
             ></TextInput>
             {formik.touched.firstName && formik.errors.firstName && (
-              <FormInputError className="mt-4">{formik.errors.firstName}</FormInputError>
+              <FormInputError className="mt-4">
+                {formik.errors.firstName}
+              </FormInputError>
             )}
           </div>
           <div>
@@ -80,7 +84,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
             ></TextInput>
             {formik.touched.lastName && formik.errors.lastName && (
-              <FormInputError className="mt-4">{formik.errors.lastName}</FormInputError>
+              <FormInputError className="mt-4">
+                {formik.errors.lastName}
+              </FormInputError>
             )}
           </div>
         </div>
@@ -98,7 +104,9 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
           ></TextInput>
           {formik.touched.password && formik.errors.password && (
-            <FormInputError className="mt-4">{formik.errors.password}</FormInputError>
+            <FormInputError className="mt-4">
+              {formik.errors.password}
+            </FormInputError>
           )}
         </div>
         <div className="mb-16">
@@ -115,7 +123,9 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
           ></TextInput>
           {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-            <FormInputError className="mt-4">{formik.errors.confirmPassword}</FormInputError>
+            <FormInputError className="mt-4">
+              {formik.errors.confirmPassword}
+            </FormInputError>
           )}
         </div>
         <div>
