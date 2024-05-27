@@ -18,4 +18,7 @@ body[theme="dark"] {
   --button-primary-bg-color: rgb(35, 134, 54);
   --button-primary-b-color: rgba(240, 246, 252, 0.1);
   --button-primary-focus-color: rgb(18, 210, 56);
+
+  /* form input error */
+  --form-input-error-color: rgb(255, 0, 0);
 }

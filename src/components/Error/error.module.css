@@ -1,0 +1,7 @@
+.FormInputError {
+  color: var(--form-input-error-color);
+}
+
+.FormInputError:global.sm {
+  font-size: 12px;
+}
