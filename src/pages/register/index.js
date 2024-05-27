@@ -1,4 +1,3 @@
-import Logo from "../../assests/img/logo.png";
 import Button from "../../components/Button";
 import TextInput from "../../components/Input/TextInput";
 import Label from "../../components/Label";
@@ -77,16 +76,10 @@ const RegisterForm = () => {
 
 const Register = () => {
   return (
-    <div className={`full-screen-jcenter ${styles.container}`}>
-      <div>
-        <div className="text-center">
-          <img src={Logo} className={styles.logo} alt="wow" />
-        </div>
-        <h1 className={`text-center ${styles.title}`}>Sign up with ChatApp</h1>
-        <RegisterForm />
-        <RegisterFooter />
-      </div>
-    </div>
+    <>
+      <RegisterForm />
+      <RegisterFooter />
+    </>
   );
 };
 

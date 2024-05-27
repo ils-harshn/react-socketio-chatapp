@@ -52,16 +52,10 @@ const LoginForm = () => {
 
 const Login = () => {
   return (
-    <div className={`full-screen-jcenter ${styles.container}`}>
-      <div>
-        <div className="text-center">
-          <img src={Logo} className={styles.logo} alt="wow" />
-        </div>
-        <h1 className={`text-center ${styles.title}`}>Sign In with ChatApp</h1>
-        <LoginForm />
-        <LoginFooter />
-      </div>
-    </div>
+    <>
+      <LoginForm />
+      <LoginFooter />
+    </>
   );
 };
 

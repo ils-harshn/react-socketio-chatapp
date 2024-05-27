@@ -3,6 +3,10 @@
   text-decoration: none;
 }
 
+.Link:hover {
+  text-decoration: underline;
+}
+
 .Link:global.sm {
   font-size: 12px;
 }
