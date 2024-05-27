@@ -6,3 +6,7 @@
 .Link:global.sm {
   font-size: 12px;
 }
+
+.Link:global.md {
+  font-size: 14px;
+}

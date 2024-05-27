@@ -1,6 +1,6 @@
 .logo {
   width: 48px;
-  padding: 32px 0 16px 0;
+  padding: 32px 0 0 0;
 }
 
 .title {
@@ -9,17 +9,10 @@
 }
 
 .formContainer {
-  margin-top: 16px;
+  margin-top: 24px;
   width: calc(320px - 34px);
   border: 1px solid var(--form-container-b-color);
   background-color: var(--form-container-bg);
   border-radius: 6px;
-  height: 200px;
   padding: 16px;
-}
-
-.forgetPassword {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }

@@ -12,4 +12,9 @@ body[theme="dark"] {
 
   /* link */
   --link-color: rgb(68, 147, 248);
+
+  /* button */
+  --button-primary-color: rgb(255, 255, 255);
+  --button-primary-bg-color: rgb(35, 134, 54);
+  --button-primary-b-color: rgba(240, 246, 252, 0.1);
 }

@@ -1,0 +1,22 @@
+.Button {
+  outline: none;
+}
+
+/* varient */
+.Button:global.primary {
+  color: var(--button-primary-color);
+  background-color: var(--button-primary-bg-color);
+  border: 1px solid var(--button-primary-b-color);
+  border-radius: 6px;
+}
+
+/* size */
+.Button:global.md {
+  padding: 5px 16px;
+  font-size: 14px;
+}
+
+/* width */
+.Button:global.full {
+  width: 100%;
+}
