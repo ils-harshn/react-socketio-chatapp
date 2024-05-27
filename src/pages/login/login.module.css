@@ -17,8 +17,8 @@
   padding: 16px;
 }
 
-.nameContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
-  gap: 16px;
+.forgetPassword {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

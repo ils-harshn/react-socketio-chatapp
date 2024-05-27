@@ -20,3 +20,8 @@
 .Button:global.full {
   width: 100%;
 }
+
+/* focus */
+.Button:global.primary:focus {
+  outline: 2px solid var(--button-primary-focus-color);
+}
