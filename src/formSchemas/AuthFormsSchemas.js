@@ -15,4 +15,8 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required"),
 });
 
-export { RegisterSchema, LoginSchema };
+const VerifyEmailSchema = Yup.object().shape({
+  otp: Yup.string().required("OTP is required"),
+});
+
+export { RegisterSchema, LoginSchema, VerifyEmailSchema };

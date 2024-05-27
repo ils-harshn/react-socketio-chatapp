@@ -9,6 +9,7 @@ import { RegisterSchema } from "../../formSchemas/AuthFormsSchemas";
 import FormInputError from "../../components/Error";
 import { useRegisterMutation } from "../../api/auth/queryHooks";
 import notify from "../../utils/notify";
+import { useNavigate } from "react-router-dom";
 
 const RegisterFooter = () => {
   return (
@@ -22,9 +23,15 @@ const RegisterFooter = () => {
 };
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const { mutate, isLoading } = useRegisterMutation({
     onSuccess: (data) => {
       notify.info(`OTP has been sent to ${data.email}`);
+      navigate(ROUTES.VERIFY_EMAIL, {
+        state: {
+          email: data.email,
+        },
+      });
     },
     onError: (error) => {
       notify.error(`${error.response.data.message}`);

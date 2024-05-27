@@ -1,0 +1,8 @@
+.formContainer {
+  margin-top: 24px;
+  width: calc(320px - 34px);
+  border: 1px solid var(--form-container-b-color);
+  background-color: var(--form-container-bg);
+  border-radius: 6px;
+  padding: 16px;
+}

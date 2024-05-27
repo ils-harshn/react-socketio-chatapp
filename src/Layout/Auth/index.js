@@ -6,6 +6,11 @@ import ROUTES from "../../router/ROUTES";
 
 const Auth = () => {
   const location = useLocation();
+  const titles = {
+    [ROUTES.REGISTER]: "Sign up with ChatApp",
+    [ROUTES.LOGIN]: "Sign in with ChatApp",
+    [ROUTES.VERIFY_EMAIL]: "Verify email for ChatApp",
+  };
   return (
     <>
       <div className={`full-screen-jcenter`}>
@@ -14,9 +19,7 @@ const Auth = () => {
             <img src={Logo} className={styles.logo} alt="wow" />
           </div>
           <h1 className={`text-center ${styles.title}`}>
-            {location.pathname === ROUTES.REGISTER
-              ? "Sign up with ChatApp"
-              : "Sign in with Chat App"}
+            {titles[location.pathname]}
           </h1>
           <Outlet />
         </div>

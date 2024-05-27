@@ -10,6 +10,10 @@
   outline: 3px solid var(--text-input-outline-focus-color);
 }
 
+.textInput:disabled {
+  opacity: 0.5;
+}
+
 .textInput:global.sm {
   padding: 5px 12px;
 }

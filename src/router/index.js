@@ -4,6 +4,7 @@ import Login from "../pages/login";
 import Register from "../pages/register";
 import Auth from "../Layout/Auth";
 import BasicConfig from "./BasicConfig";
+import VerifyEmail from "../pages/VerifyEmail";
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
             <Route index element={<Register />} />
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.REGISTER} element={<Register />} />
+            <Route path={ROUTES.VERIFY_EMAIL} element={<VerifyEmail />} />
           </Route>
         </Route>
       </Routes>
