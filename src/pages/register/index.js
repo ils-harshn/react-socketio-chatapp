@@ -28,9 +28,7 @@ const RegisterForm = () => {
     onSuccess: (data) => {
       notify.info(`OTP has been sent to ${data.email}`);
       navigate(ROUTES.VERIFY_EMAIL, {
-        state: {
-          email: data.email,
-        },
+        state: data,
       });
     },
     onError: (error) => {

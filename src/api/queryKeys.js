@@ -1,5 +1,6 @@
 const QUERY_KEYS = {
   REGISTER: "REGISTER",
+  VERIFYEMAIL: "VERIFYEMAIL",
 };
 
 export default QUERY_KEYS;

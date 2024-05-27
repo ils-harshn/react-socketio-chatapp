@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./verifyEmail.module.css";
 import { VerifyEmailSchema } from "../../formSchemas/AuthFormsSchemas";
 import { useFormik } from "formik";
@@ -6,14 +6,36 @@ import Label from "../../components/Label";
 import TextInput from "../../components/Input/TextInput";
 import Button from "../../components/Button";
 import FormInputError from "../../components/Error";
+import { useVerifyEmailMutation } from "../../api/auth/queryHooks";
+import ROUTES from "../../router/ROUTES";
+import notify from "../../utils/notify";
 
-const VerifyEmailForm = ({ email }) => {
+const VerifyEmailForm = ({ data }) => {
+  const navigate = useNavigate();
+  const { mutate, isLoading } = useVerifyEmailMutation({
+    onSuccess: () => {
+      notify.success(`Your account is verified`);
+      notify.info(`You can now login`);
+      navigate(ROUTES.LOGIN);
+    },
+    onError: (error) => {
+      notify.error(`${error.response.data.message}`);
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
       otp: "",
     },
     validationSchema: VerifyEmailSchema,
-    onSubmit: (values, actions) => {},
+    onSubmit: (values, actions) => {
+      let payload = {
+        otp: values.otp,
+        _id: data._id,
+      };
+
+      mutate(payload);
+    },
   });
   return (
     <div className={`${styles.formContainer}`}>
@@ -24,7 +46,7 @@ const VerifyEmailForm = ({ email }) => {
             type="text"
             width="full"
             name="email"
-            value={email}
+            value={data.email}
             disabled
           ></TextInput>
         </div>
@@ -47,7 +69,9 @@ const VerifyEmailForm = ({ email }) => {
           )}
         </div>
         <div>
-          <Button type="submit">Sign In</Button>
+          <Button type="submit">
+            {isLoading ? "Verifying..." : "Verify OTP"}
+          </Button>
         </div>
       </form>
     </div>
@@ -55,8 +79,8 @@ const VerifyEmailForm = ({ email }) => {
 };
 
 const VerifyEmail = () => {
-  const { email } = useLocation().state;
-  return <VerifyEmailForm email={email} />;
+  const data = useLocation().state;
+  return <VerifyEmailForm data={data} />;
 };
 
 export default VerifyEmail;
