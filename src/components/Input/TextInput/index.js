@@ -1,9 +1,11 @@
 import styles from "./TextInput.module.css";
 
-const TextInput = ({ size = "sm", ...props }) => {
+const TextInput = ({ className, size = "sm", ...props }) => {
   return (
     <input
-      className={`${props.className} ${styles.textInput} ${size} ${props.width}`}
+      className={`${className || ""} ${styles.textInput} ${size} ${
+        props.width
+      }`}
       {...props}
     ></input>
   );
