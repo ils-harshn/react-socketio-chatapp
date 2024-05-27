@@ -1,4 +1,3 @@
-import Logo from "../../assests/img/logo.png";
 import Button from "../../components/Button";
 import TextInput from "../../components/Input/TextInput";
 import Label from "../../components/Label";
