@@ -9,4 +9,7 @@ body[theme="dark"] {
   --text-input-bg-color: rgba(70, 90, 126, 0.4);
   --text-input-b-color: rgb(48, 54, 61);
   --text-input-outline-focus-color: rgb(34, 100, 200);
+
+  /* link */
+  --link-color: rgb(68, 147, 248);
 }
