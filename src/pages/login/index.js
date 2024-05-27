@@ -26,10 +26,7 @@ const LoginForm = () => {
       password: "",
     },
     validationSchema: LoginSchema,
-    onSubmit: (values, actions) => {
-      console.log(values);
-      actions.resetForm();
-    },
+    onSubmit: (values, actions) => {},
   });
 
   return (

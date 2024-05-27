@@ -8,6 +8,7 @@ import styles from "./register.module.css";
 import { RegisterSchema } from "../../formSchemas/AuthFormsSchemas";
 import FormInputError from "../../components/Error";
 import { useRegisterMutation } from "../../api/auth/queryHooks";
+import notify from "../../utils/notify";
 
 const RegisterFooter = () => {
   return (
@@ -23,8 +24,10 @@ const RegisterFooter = () => {
 const RegisterForm = () => {
   const { mutate, isLoading } = useRegisterMutation({
     onSuccess: (data) => {
-      console.log(data);
-      console.log(formik);
+      notify.info(`OTP has been sent to ${data.email}`);
+    },
+    onError: (error) => {
+      notify.error(`${error.response.data.message}`);
     },
   });
 

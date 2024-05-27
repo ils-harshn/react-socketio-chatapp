@@ -19,6 +19,15 @@ api.interceptors.request.use(
   }
 );
 
+api.interceptors.response.use(
+  function (response) {
+    return response.data;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
 const BaseQueryProvider = ({ children }) => {
   const queryClient = new QueryClient();
   return (
