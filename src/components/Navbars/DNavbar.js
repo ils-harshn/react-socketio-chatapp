@@ -33,7 +33,7 @@ const DNavbar = () => {
         </ul>
       </div>
       <div className={`${styles.rightside}`}>
-        <XButton>CREATE A NEW WORKSPACE</XButton>
+        <XButton>CREATE A NEW CHANNEL</XButton>
       </div>
     </nav>
   );
