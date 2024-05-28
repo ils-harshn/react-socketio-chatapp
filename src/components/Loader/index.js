@@ -1,7 +1,7 @@
 import styles from "./loader.module.css";
 
 export const Spinner = () => {
-  return <div class={`${styles.Spinner}`}></div>;
+  return <div className={`${styles.Spinner}`}></div>;
 };
 
 export const FullScreenLoader = () => {

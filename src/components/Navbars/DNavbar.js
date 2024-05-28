@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assests/img/logo.png";
 import ROUTES from "../../router/ROUTES";
 import XButton from "../Button/XButton/XButton";
@@ -5,10 +6,14 @@ import { NavLink } from "../Link";
 import styles from "./DNavbar.module.css";
 
 const DNavbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className={`${styles.container}`}>
       <div className={`${styles.leftside}`}>
-        <div className={`${styles.logocontainer}`}>
+        <div
+          className={`${styles.logocontainer}`}
+          onClick={() => navigate(ROUTES.DASHBOARD)}
+        >
           <img alt="logo" src={Logo} className={`${styles.logo}`} />
           <div className={`${styles.appname}`}>ChatApp</div>
         </div>

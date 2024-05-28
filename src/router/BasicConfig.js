@@ -6,7 +6,7 @@ const BasicConfig = () => {
   const path = useLocation().pathname;
 
   useEffect(() => {
-    document.title = ROUTES_TITLE[path] || "Register";
+    document.title = ROUTES_TITLE[path] || "Dashboard";
   }, [path]);
 
   return <Outlet />;
