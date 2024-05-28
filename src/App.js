@@ -13,7 +13,7 @@ function App() {
   return (
     <BaseQueryProvider>
       <Router />
-      <ToastContainer theme="dark" />
+      <ToastContainer theme={ThemeManager.get()} />
     </BaseQueryProvider>
   );
 }

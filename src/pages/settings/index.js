@@ -5,12 +5,14 @@ import XButton from "../../components/Button/XButton/XButton";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../router/ROUTES";
 import WebTokenStorer from "../../utils/webTokenStorer";
+import notify from "../../utils/notify";
 
 const Logout = () => {
   const navigate = useNavigate();
   const logout = () => {
     WebTokenStorer.clear();
     navigate(ROUTES.LOGIN);
+    notify.success("Logged out successfully");
   };
   return (
     <div>
@@ -21,7 +23,7 @@ const Logout = () => {
 
 const ThemeChanger = () => {
   const [theme, setTheme] = useState(ThemeManager.get());
-  const themes = ["light", "dark", "ano"];
+  const themes = ["light", "dark"];
   return (
     <div
       className="mb-16"
@@ -51,6 +53,7 @@ const ThemeChanger = () => {
               let newTheme = themes[index];
               setTheme(newTheme);
               ThemeManager.set(newTheme);
+              window.location.reload();
             }}
           >
             {th.toUpperCase()}
