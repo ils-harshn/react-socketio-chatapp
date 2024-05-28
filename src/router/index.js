@@ -7,6 +7,7 @@ import BasicConfig from "./BasicConfig";
 import VerifyEmail from "../pages/VerifyEmail";
 import Dashboard from "../pages/dashboard";
 import Protected from "../Layout/Protected";
+import Settings from "../pages/settings";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
           <Route element={<Protected />}>
             <Route index element={<Dashboard />} />
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+            <Route path={ROUTES.SETTINGS} element={<Settings />} />
           </Route>
         </Route>
       </Routes>

@@ -1,6 +1,7 @@
 import Logo from "../../assests/img/logo.png";
+import ROUTES from "../../router/ROUTES";
 import XButton from "../Button/XButton/XButton";
-import Link from "../Link";
+import { NavLink } from "../Link";
 import styles from "./DNavbar.module.css";
 
 const DNavbar = () => {
@@ -13,16 +14,16 @@ const DNavbar = () => {
         </div>
         <ul className={`${styles.options}`}>
           <li>
-            <Link>Features</Link>
+            <NavLink to="unko">Features</NavLink>
           </li>
           <li>
-            <Link>Settings</Link>
+            <NavLink to={ROUTES.SETTINGS}>Settings</NavLink>
           </li>
           <li>
-            <Link>Pricing</Link>
+            <NavLink to="unko">Pricing</NavLink>
           </li>
           <li>
-            <Link>About Us</Link>
+            <NavLink to="unko">About Us</NavLink>
           </li>
         </ul>
       </div>

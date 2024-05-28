@@ -14,3 +14,7 @@
 .Link:global.md {
   font-size: 14px;
 }
+
+.Link:global.active {
+  font-weight: bolder;
+}
