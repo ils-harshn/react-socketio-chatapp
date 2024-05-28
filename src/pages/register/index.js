@@ -146,7 +146,7 @@ const RegisterForm = () => {
         </div>
         <div>
           <Button type="submit" disabled={formik.isSubmitting || isLoading}>
-            {isLoading ? "Please Wait..." : "Sign In"}
+            {isLoading ? "Please Wait..." : "Sign Up"}
           </Button>
         </div>
       </form>
