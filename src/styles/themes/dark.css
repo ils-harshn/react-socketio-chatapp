@@ -25,4 +25,16 @@ body[theme="dark"] {
   /* spinner */
   --spinner-small-b-color: rgb(18, 210, 56);
   --spinner-big-b-color: rgb(255, 255, 255);
+
+  /* d-navbar */
+  --d-navbar-bg-color: rgb(21, 21, 21);
+
+  /* Xbutton */
+  --xbutton-color: rgb(97, 31, 105);
+  --xbutton-bg-color: rgb(255, 255, 255);
+  --xbutton-b-color: rgb(97, 31, 105);
+  --xbutton-box-shadow-color: rgb(97, 31, 105);
+
+  /* label */
+  --label-color: rgb(230, 237, 243);
 }

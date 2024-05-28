@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4vw;
+  height: 80px;
+
+  background-color: var(--d-navbar-bg-color);
+}
+
+.leftside {
+  display: flex;
+  align-items: center;
+}
+
+.logocontainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 36px;
+  margin-right: 10px;
+}
+
+.appname {
+  font-size: 20px;
+}
+
+.options {
+  display: flex;
+  list-style: none;
+  margin-left: 40px;
+}
+
+.options li {
+  margin-right: 16px;
+}
+
+.options li a {
+  color: var(--font-color);
+}

@@ -1,6 +1,41 @@
-body[theme="light"] {
+:root,
+[theme="light"] {
   --background-color: rgb(255, 255, 255);
   --font-color: rgb(0, 0, 0);
-  --form-container-bg: rgb(22, 27, 34);
-  --form-container-b-color: rgb(22, 27, 34);
+  --form-container-bg: rgb(252, 252, 252);
+  --form-container-b-color: rgba(0, 0, 0, 0.7);
+
+  /* text input */
+  --text-input-color: rgb(0, 0, 0);
+  --text-input-bg-color: rgba(255, 255, 255, 0.4);
+  --text-input-b-color: rgb(48, 54, 61);
+  --text-input-outline-focus-color: rgb(34, 100, 200);
+
+  /* link */
+  --link-color: rgb(68, 147, 248);
+
+  /* button */
+  --button-primary-color: rgb(255, 255, 255);
+  --button-primary-bg-color: rgb(35, 134, 54);
+  --button-primary-b-color: rgba(240, 246, 252, 0.1);
+  --button-primary-focus-color: rgb(18, 210, 56);
+
+  /* form input error */
+  --form-input-error-color: rgb(255, 0, 0);
+
+  /* spinner */
+  --spinner-small-b-color: rgb(18, 210, 56);
+  --spinner-big-b-color: rgb(255, 255, 255);
+
+  /* d-navbar */
+  --d-navbar-bg-color: rgb(248, 248, 248);
+
+  /* Xbutton */
+  --xbutton-color: rgb(97, 31, 105);
+  --xbutton-bg-color: rgb(255, 255, 255);
+  --xbutton-b-color: rgb(97, 31, 105);
+  --xbutton-box-shadow-color: rgb(97, 31, 105);
+
+  /* label */
+  --label-color: rgb(0, 0, 0);
 }
