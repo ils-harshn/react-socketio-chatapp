@@ -1,0 +1,42 @@
+.modaloverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--modaloverlay-bg-color);
+}
+
+.modaloverlay :global .modal {
+  animation: modal-overlay-mount 100ms linear forwards;
+}
+
+.modaloverlay:global.close .modal {
+  animation: modal-overlay-unmount 100ms linear forwards;
+}
+
+@keyframes :global(modal-overlay-mount) {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes :global(modal-overlay-unmount) {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}

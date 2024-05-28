@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assests/img/logo.png";
 import ROUTES from "../../router/ROUTES";
-import XButton from "../Button/XButton/XButton";
 import { NavLink } from "../Link";
 import styles from "./DNavbar.module.css";
+import CreateChannelModal from "../Modals/CreateChannelModal";
 
 const DNavbar = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const DNavbar = () => {
         </ul>
       </div>
       <div className={`${styles.rightside}`}>
-        <XButton>CREATE A NEW CHANNEL</XButton>
+        <CreateChannelModal />
       </div>
     </nav>
   );

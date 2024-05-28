@@ -37,4 +37,18 @@ body[theme="dark"] {
 
   /* label */
   --label-color: rgb(230, 237, 243);
+
+  /* modal overlay */
+  --modaloverlay-bg-color: rgba(0, 0, 0, 0.7);
+
+  /* icon */
+  --icon-fill: rgb(255, 255, 255);
+  --icon-fill-hover: rgb(172, 172, 172);
+
+  /* modal */
+  --modal-close-icon-color: rgb(0, 0, 0);
+  --modal-close-icon-hover-color: rgb(81, 81, 81);
+  --modal-banner-bg-color: rgb(255, 255, 255);
+  --modal-banner-color: rgb(0, 0, 0);
+  --modal-body-bg-color: rgb(28, 28, 28);
 }
