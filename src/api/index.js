@@ -1,4 +1,5 @@
 import axios from "axios";
+import WebTokenStorer from "../utils/webTokenStorer";
 const { QueryClientProvider, QueryClient } = require("react-query");
 
 const API_VERSIONS = {
@@ -11,7 +12,16 @@ const api = axios.create({
 
 api.interceptors.request.use(
   function (config) {
+    const data = WebTokenStorer.get();
     config.headers["Content-Type"] = "application/json";
+
+    // authorization token setup
+    if (data._id && data.email && data.token) {
+      config.headers["user-id"] = data._id;
+      config.headers["user-token"] = data.token;
+      config.headers["user-email"] = data.email;
+    }
+
     return config;
   },
   function (error) {

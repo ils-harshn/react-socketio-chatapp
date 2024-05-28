@@ -9,6 +9,8 @@ import { LoginSchema } from "../../formSchemas/AuthFormsSchemas";
 import FormInputError from "../../components/Error";
 import { useLoginMutation } from "../../api/auth/queryHooks";
 import notify from "../../utils/notify";
+import { useNavigate } from "react-router-dom";
+import WebTokenStorer from "../../utils/webTokenStorer";
 
 const LoginFooter = () => {
   return (
@@ -22,9 +24,11 @@ const LoginFooter = () => {
 };
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const { mutate, isLoading } = useLoginMutation({
     onSuccess: (data) => {
-      console.log(data);
+      WebTokenStorer.set(data);
+      navigate(ROUTES.DASHBOARD);
       notify.success(`Logged in successfully`);
     },
     onError: (error) => {

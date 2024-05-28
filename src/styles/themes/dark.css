@@ -21,4 +21,8 @@ body[theme="dark"] {
 
   /* form input error */
   --form-input-error-color: rgb(255, 0, 0);
+
+  /* spinner */
+  --spinner-small-b-color: rgb(18, 210, 56);
+  --spinner-big-b-color: rgb(255, 255, 255);
 }

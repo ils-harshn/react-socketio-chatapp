@@ -38,3 +38,13 @@ export const login = async (data) => {
   const response = await api.request(config);
   return response;
 };
+
+export const verifyLogin = async () => {
+  let config = {
+    method: "post",
+    url: API_ENDPOINTS.VERIFY_LOGIN,
+  };
+
+  const response = await api.request(config);
+  return response;
+};
