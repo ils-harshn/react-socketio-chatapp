@@ -1,5 +1,11 @@
+import DNavbar from "../../components/Navbars/DNavbar";
+
 const Dashboard = () => {
-  return <h2>Dashboard</h2>;
+  return (
+    <main>
+      <DNavbar />
+    </main>
+  );
 };
 
 export default Dashboard;
