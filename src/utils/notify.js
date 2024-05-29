@@ -21,7 +21,7 @@ const notify = {
   info: (message) => {
     toast.info(message, toastConfig);
   },
-  promise: toast.promise,
+  promise: (promise, config) => toast.promise(promise, config, toastConfig),
 };
 
 export default notify;
