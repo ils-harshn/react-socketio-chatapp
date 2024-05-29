@@ -6,10 +6,14 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../../router/ROUTES";
 import WebTokenStorer from "../../utils/webTokenStorer";
 import notify from "../../utils/notify";
+import { useDispatch } from "react-redux";
+import { remove_user_data } from "../../store/actions/AuthActions/index.types";
 
 const Logout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const logout = () => {
+    dispatch(remove_user_data());
     WebTokenStorer.clear();
     navigate(ROUTES.LOGIN);
     notify.success("Logged out successfully");

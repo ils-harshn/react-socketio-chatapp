@@ -4,12 +4,18 @@ import { useEffect, useState } from "react";
 import ROUTES from "../../router/ROUTES";
 import notify from "../../utils/notify";
 import { FullScreenLoader } from "../../components/Loader";
+import { useDispatch } from "react-redux";
+import { set_user_data } from "../../store/actions/AuthActions/index.types";
 
 const Protected = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const { mutate } = useVerifyLoginMutation({
-    onSuccess: () => setLoading(false),
+    onSuccess: (data) => {
+      dispatch(set_user_data(data));
+      setLoading(false);
+    },
     onError: () => {
       navigate(ROUTES.LOGIN);
       notify.info("Login required!");
