@@ -3,8 +3,8 @@
   height: fit-content;
   border-radius: 8px;
   overflow: hidden;
-  width: 90vw;
-  height: 90vh;
+  width: 60vw;
+  height: 60vh;
 }
 
 .modal :global svg.close {
@@ -38,6 +38,7 @@
 
 .modal :global .modal-body {
   padding: 16px;
+  height: calc(100% - 78px);
 }
 
 .modal :global .banner .title-icon {
@@ -45,4 +46,11 @@
   width: 24px;
   height: 24px;
   margin-right: 10px;
+}
+
+.modal :global .modal-body .step-container {
+  width: calc(100% - 32px);
+  min-width: 280px;
+  max-width: 1000px;
+  height: calc(100% - 32px);
 }

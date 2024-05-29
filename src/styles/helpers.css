@@ -15,12 +15,21 @@
   justify-content: center;
 }
 
+.center-full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mb-8 {
   margin-bottom: 8px;
 }
 
 .mb-16 {
   margin-bottom: 16px;
+}
+.mt-16 {
+  margin-top: 16px;
 }
 
 .fs-14 {
@@ -29,4 +38,24 @@
 
 .mt-4 {
   margin-top: 4px;
+}
+
+.flex {
+  display: flex;
+}
+
+.mr-16 {
+  margin-right: 16px;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.font-s-12 {
+  font-size: 12px;
 }
