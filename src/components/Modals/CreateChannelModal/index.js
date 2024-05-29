@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import XButton from "../../Button/XButton/XButton";
 import ModalWrapper from "../Wrapper";
 import styles from "./CreateChannelModal.module.css";
@@ -10,7 +10,7 @@ import FormInputError from "../../Error";
 import { useChannelCreateMutation } from "../../../api/channel/queryHooks";
 import notify from "../../../utils/notify";
 
-const MultiStepForm = ({ closeModal }) => {
+const MultiStepForm = ({ closeModal, setProcessing }) => {
   const [step, setStep] = useState(0);
   const initialValues = {
     channelName: "",
@@ -112,9 +112,14 @@ const MultiStepForm = ({ closeModal }) => {
   ];
 
   const currentValidationSchema = steps[step].validationSchema;
+  const [isLoading, setLoading] = useState(false);
   const { mutate } = useChannelCreateMutation({
     onSuccess: () => {
       closeModal();
+    },
+    onError: () => {
+      setLoading(false);
+      setProcessing(false);
     },
   });
 
@@ -139,6 +144,8 @@ const MultiStepForm = ({ closeModal }) => {
     validationSchema: currentValidationSchema,
     onSubmit: (values) => {
       if (step === steps.length - 1) {
+        setLoading(!isLoading);
+        setProcessing(true);
         handleCreateChannel(values);
       } else {
         setStep(step + 1);
@@ -150,6 +157,10 @@ const MultiStepForm = ({ closeModal }) => {
     setStep(step - 1);
   };
 
+  useEffect(() => {
+    setProcessing(false);
+  }, []);
+
   return (
     <div className="step-container">
       <p className="font-s-12 mb-16">
@@ -159,11 +170,16 @@ const MultiStepForm = ({ closeModal }) => {
         {steps[step].content(formik)}
         <div className="mt-16">
           {step > 0 && (
-            <XButton className="mr-16" type="button" onClick={handleBack}>
+            <XButton
+              className="mr-16"
+              type="button"
+              onClick={handleBack}
+              disabled={isLoading}
+            >
               BACK
             </XButton>
           )}
-          <XButton type="submit">
+          <XButton type="submit" disabled={isLoading}>
             {step === steps.length - 1 ? "CREATE" : "NEXT"}
           </XButton>
         </div>
@@ -172,7 +188,7 @@ const MultiStepForm = ({ closeModal }) => {
   );
 };
 
-const ModalBody = ({ closeModal }) => {
+const ModalBody = ({ closeModal, setProcessing }) => {
   return (
     <>
       <div className="banner">
@@ -184,7 +200,7 @@ const ModalBody = ({ closeModal }) => {
       </div>
 
       <div className="modal-body">
-        <MultiStepForm closeModal={closeModal} />
+        <MultiStepForm closeModal={closeModal} setProcessing={setProcessing} />
       </div>
     </>
   );
@@ -193,12 +209,15 @@ const ModalBody = ({ closeModal }) => {
 export const CreateChannelModal = () => {
   const [open, setOpen] = useState(false);
   const [isExited, setExited] = useState(false);
+  const [isProcessing, setProcessing] = useState(false);
 
   const closeModal = () => {
-    setExited(true);
-    setTimeout(() => {
-      setOpen(false);
-    }, 100);
+    if (isProcessing === false) {
+      setExited(true);
+      setTimeout(() => {
+        setOpen(false);
+      }, 100);
+    }
   };
 
   const openModal = () => {
@@ -215,7 +234,7 @@ export const CreateChannelModal = () => {
         onClose={closeModal}
       >
         <div className={`modal ${styles.modal}`}>
-          <ModalBody closeModal={closeModal} />
+          <ModalBody closeModal={closeModal} setProcessing={setProcessing} />
         </div>
       </ModalWrapper>
     </>
