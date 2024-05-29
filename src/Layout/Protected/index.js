@@ -6,10 +6,12 @@ import notify from "../../utils/notify";
 import { FullScreenLoader } from "../../components/Loader";
 import { useDispatch } from "react-redux";
 import { set_user_data } from "../../store/actions/AuthActions/index.types";
+import { useQueryClient } from "react-query";
 
 const Protected = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(true);
   const { mutate } = useVerifyLoginMutation({
     onSuccess: (data) => {
@@ -24,7 +26,10 @@ const Protected = () => {
 
   useEffect(() => {
     mutate();
-  }, [mutate]);
+    return () => {
+      queryClient.removeQueries();
+    };
+  }, [mutate, queryClient]);
 
   if (loading) return <FullScreenLoader />;
 
