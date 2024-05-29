@@ -12,7 +12,7 @@
   border-radius: 5px 5px 0 0;
   height: 48px;
   background-color: var(--ChannelsForInfo-bg-color);
-  color: black;
+  color: var(--background-color);
 }
 
 .ChannelLists ul {

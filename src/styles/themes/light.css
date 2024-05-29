@@ -38,4 +38,26 @@
 
   /* label */
   --label-color: rgb(0, 0, 0);
+
+  /* modal overlay */
+  --modaloverlay-bg-color: rgba(179, 179, 179, 0.7);
+
+  /* icon */
+  --icon-fill: rgb(255, 255, 255);
+  --icon-fill-hover: rgb(255, 255, 255);
+
+  /* modal */
+  --modal-close-icon-color: rgb(255, 255, 255);
+  --modal-close-icon-hover-color: rgb(102, 102, 102);
+  --modal-banner-bg-color: rgb(0, 0, 0);
+  --modal-banner-color: rgb(255, 255, 255);
+  --modal-body-bg-color: rgb(255, 255, 255);
+
+  /* ChannelsForInfo */
+  --ChannelsForInfo-bg-color: rgb(0, 0, 0);
+  --ChannelLists-border-color: rgb(255, 255, 255);
+  --ChannelLists-bg-color: rgb(224, 224, 224);
+
+  /* avater */
+  --FirstLetter-bg-color: rgb(83, 187, 83);
 }

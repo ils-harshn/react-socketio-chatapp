@@ -9,8 +9,14 @@ import { useFormik } from "formik";
 import FormInputError from "../../Error";
 import { useChannelCreateMutation } from "../../../api/channel/queryHooks";
 import notify from "../../../utils/notify";
+import { useLocation } from "react-router-dom";
+import ROUTES from "../../../router/ROUTES";
+import { useQueryClient } from "react-query";
+import QUERY_KEYS from "../../../api/queryKeys";
 
 const MultiStepForm = ({ closeModal, setProcessing }) => {
+  const pathname = useLocation().pathname;
+  const queryClient = useQueryClient();
   const [step, setStep] = useState(0);
   const initialValues = {
     channelName: "",
@@ -116,6 +122,8 @@ const MultiStepForm = ({ closeModal, setProcessing }) => {
   const { mutate } = useChannelCreateMutation({
     onSuccess: () => {
       closeModal();
+      if (pathname === ROUTES.DASHBOARD || pathname === "/")
+        queryClient.invalidateQueries([QUERY_KEYS.LISTCHANNEL]);
     },
     onError: () => {
       setLoading(false);
