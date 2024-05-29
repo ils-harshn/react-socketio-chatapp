@@ -28,6 +28,7 @@ body[theme="dark"] {
 
   /* d-navbar */
   --d-navbar-bg-color: rgb(21, 21, 21);
+  --d-navbar-bg-color-scrolled: rgb(24, 47, 78);
 
   /* Xbutton */
   --xbutton-color: rgb(97, 31, 105);
