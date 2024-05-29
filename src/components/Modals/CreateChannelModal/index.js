@@ -142,7 +142,7 @@ const MultiStepForm = () => {
             </XButton>
           )}
           <XButton type="submit">
-            {step === steps.length - 1 ? "Submit" : "Next"}
+            {step === steps.length - 1 ? "CREATE" : "NEXT"}
           </XButton>
         </div>
       </form>

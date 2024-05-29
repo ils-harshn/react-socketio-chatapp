@@ -29,7 +29,7 @@
 }
 
 .textInput:global.lg.full {
-  width: calc(100% - 4px);
+  width: calc(100% - 32px);
 }
 
 .textInput:global.full {
