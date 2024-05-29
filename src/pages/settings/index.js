@@ -8,6 +8,7 @@ import WebTokenStorer from "../../utils/webTokenStorer";
 import notify from "../../utils/notify";
 import { useDispatch } from "react-redux";
 import { remove_user_data } from "../../store/actions/AuthActions/index.types";
+import { FullScreenLoader } from "../../components/Loader";
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -27,7 +28,11 @@ const Logout = () => {
 
 const ThemeChanger = () => {
   const [theme, setTheme] = useState(ThemeManager.get());
+  const [themeChanged, setThemeChanged] = useState(false);
   const themes = ["light", "dark"];
+
+  if (themeChanged) return <FullScreenLoader />;
+
   return (
     <div
       className="mb-16"
@@ -54,6 +59,7 @@ const ThemeChanger = () => {
               cursor: "pointer",
             }}
             onClick={() => {
+              setThemeChanged(true);
               let newTheme = themes[index];
               setTheme(newTheme);
               ThemeManager.set(newTheme);
