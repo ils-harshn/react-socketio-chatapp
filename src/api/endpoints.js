@@ -4,6 +4,7 @@ const API_ENDPOINTS = {
   LOGIN: "/user/login",
   VERIFY_LOGIN: "/user/verifyUserToken",
   CHANNEL_CREATE: "/channel/create",
+  LIST_CHANNEL: "/channel/list",
 };
 
 export default API_ENDPOINTS;
