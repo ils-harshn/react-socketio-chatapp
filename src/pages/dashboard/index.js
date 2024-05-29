@@ -8,6 +8,41 @@ import FooterP1 from "../../components/Footer";
 import XButton from "../../components/Button/XButton/XButton";
 import FormInputError from "../../components/Error";
 
+const List = ({ data }) => {
+  if (data.length === 0)
+    return (
+      <div className={styles.ChannelListsLoader}>
+        <div className="text-center">
+          <h2>No Channel Found</h2>
+          <p>Please a create a new channel or join one.</p>
+        </div>
+      </div>
+    );
+  return data.map((item) => {
+    const channel = item.channel;
+    return (
+      <li key={channel._id}>
+        <div>
+          {channel.image ? (
+            <></>
+          ) : (
+            <FirstLetter title={channel.name} className="mr-16" />
+          )}
+        </div>
+        <div className={styles.ChannelDetails}>
+          <div>
+            <h2>{channel.name}</h2>
+            <div>{channel.description}</div>
+          </div>
+          <div>
+            <XButton>LUNCH</XButton>
+          </div>
+        </div>
+      </li>
+    );
+  });
+};
+
 const ChannelList = () => {
   const user_data = useSelector((reducers) => reducers.userDataReducer);
   const { data, isLoading, isError } = useChannelList();
@@ -26,29 +61,7 @@ const ChannelList = () => {
               <Spinner />
             </div>
           ) : (
-            data.map((item) => {
-              const channel = item.channel;
-              return (
-                <li key={channel._id}>
-                  <div>
-                    {channel.image ? (
-                      <></>
-                    ) : (
-                      <FirstLetter title={channel.name} className="mr-16" />
-                    )}
-                  </div>
-                  <div className={styles.ChannelDetails}>
-                    <div>
-                      <h2>{channel.name}</h2>
-                      <div>{channel.description}</div>
-                    </div>
-                    <div>
-                      <XButton>LUNCH</XButton>
-                    </div>
-                  </div>
-                </li>
-              );
-            })
+            <List data={data} />
           )}
         </ul>
       </div>
