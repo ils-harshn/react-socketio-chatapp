@@ -11,7 +11,7 @@
   font-size: 1.125rem;
   border-radius: 5px 5px 0 0;
   height: 48px;
-  background-color: #ffffff;
+  background-color: var(--ChannelsForInfo-bg-color);
   color: black;
 }
 
@@ -21,9 +21,9 @@
 
 .ChannelLists ul li {
   padding: 16px;
-  border-bottom: 1px solid #4b4b4b;
+  border-bottom: 1px solid var(--ChannelLists-border-color);
   display: flex;
-  background-color: rgb(28, 28, 28);
+  background-color: var(--ChannelLists-bg-color);
   color: white;
 }
 
@@ -36,4 +36,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.ChannelListsLoader {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ChannelLists-bg-color);
 }

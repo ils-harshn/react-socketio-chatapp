@@ -51,4 +51,12 @@ body[theme="dark"] {
   --modal-banner-bg-color: rgb(255, 255, 255);
   --modal-banner-color: rgb(0, 0, 0);
   --modal-body-bg-color: rgb(28, 28, 28);
+
+  /* ChannelsForInfo */
+  --ChannelsForInfo-bg-color: rgb(255, 255, 255);
+  --ChannelLists-border-color: rgb(75, 75, 75);
+  --ChannelLists-bg-color: rgb(28, 28, 28);
+
+  /* avater */
+  --FirstLetter-bg-color: rgb(59, 97, 55);
 }

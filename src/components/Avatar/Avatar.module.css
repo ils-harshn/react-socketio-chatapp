@@ -6,5 +6,5 @@
   align-items: center;
   justify-content: center;
   border-radius: 9px;
-  background-color: rgb(59, 97, 55);
+  background-color: var(--FirstLetter-bg-color);
 }

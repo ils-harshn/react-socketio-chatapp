@@ -6,11 +6,14 @@ import styles from "./dashboard.module.css";
 import { FirstLetter } from "../../components/Avatar";
 import FooterP1 from "../../components/Footer";
 import XButton from "../../components/Button/XButton/XButton";
+import FormInputError from "../../components/Error";
 
 const ChannelList = () => {
   const user_data = useSelector((reducers) => reducers.userDataReducer);
-  const { data, isLoading } = useChannelList();
-  if (isLoading) return <Spinner></Spinner>;
+  const { data, isLoading, isError } = useChannelList();
+
+  if (isError) return <FormInputError>Something went wrong</FormInputError>;
+
   return (
     <div className={styles.ChannelListContainer}>
       <div className={styles.ChannelsForInfo}>
@@ -18,29 +21,35 @@ const ChannelList = () => {
       </div>
       <div className={styles.ChannelLists}>
         <ul>
-          {data.map((item) => {
-            const channel = item.channel;
-            return (
-              <li key={channel._id}>
-                <div>
-                  {channel.image ? (
-                    <></>
-                  ) : (
-                    <FirstLetter title={channel.name} className="mr-16" />
-                  )}
-                </div>
-                <div className={styles.ChannelDetails}>
+          {isLoading ? (
+            <div className={styles.ChannelListsLoader}>
+              <Spinner />
+            </div>
+          ) : (
+            data.map((item) => {
+              const channel = item.channel;
+              return (
+                <li key={channel._id}>
                   <div>
-                    <h2>{channel.name}</h2>
-                    <div>{channel.description}</div>
+                    {channel.image ? (
+                      <></>
+                    ) : (
+                      <FirstLetter title={channel.name} className="mr-16" />
+                    )}
                   </div>
-                  <div>
-                    <XButton>LUNCH</XButton>
+                  <div className={styles.ChannelDetails}>
+                    <div>
+                      <h2>{channel.name}</h2>
+                      <div>{channel.description}</div>
+                    </div>
+                    <div>
+                      <XButton>LUNCH</XButton>
+                    </div>
                   </div>
-                </div>
-              </li>
-            );
-          })}
+                </li>
+              );
+            })
+          )}
         </ul>
       </div>
     </div>
