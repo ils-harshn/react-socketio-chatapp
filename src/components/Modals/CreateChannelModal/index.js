@@ -7,8 +7,10 @@ import TextInput from "../../Input/TextInput";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import FormInputError from "../../Error";
+import { useChannelCreateMutation } from "../../../api/channel/queryHooks";
+import notify from "../../../utils/notify";
 
-const MultiStepForm = () => {
+const MultiStepForm = ({ closeModal }) => {
   const [step, setStep] = useState(0);
   const initialValues = {
     channelName: "",
@@ -110,14 +112,34 @@ const MultiStepForm = () => {
   ];
 
   const currentValidationSchema = steps[step].validationSchema;
+  const { mutate } = useChannelCreateMutation({
+    onSuccess: () => {
+      closeModal();
+    },
+  });
+
+  const handleCreateChannel = async (channelData) => {
+    notify.promise(
+      new Promise((resolve, reject) => {
+        mutate(channelData, {
+          onSuccess: resolve,
+          onError: reject,
+        });
+      }),
+      {
+        pending: "Please wait...",
+        success: "Channel created successfully!",
+        error: "Error creating channel",
+      }
+    );
+  };
 
   const formik = useFormik({
     initialValues,
     validationSchema: currentValidationSchema,
     onSubmit: (values) => {
       if (step === steps.length - 1) {
-        // Final submission
-        console.log("Form submitted", values);
+        handleCreateChannel(values);
       } else {
         setStep(step + 1);
       }
@@ -162,7 +184,7 @@ const ModalBody = ({ closeModal }) => {
       </div>
 
       <div className="modal-body">
-        <MultiStepForm />
+        <MultiStepForm closeModal={closeModal} />
       </div>
     </>
   );

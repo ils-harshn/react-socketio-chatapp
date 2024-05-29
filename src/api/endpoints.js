@@ -3,6 +3,7 @@ const API_ENDPOINTS = {
   VERIFY_EMAIL: "/user/verifyOTP",
   LOGIN: "/user/login",
   VERIFY_LOGIN: "/user/verifyUserToken",
+  CHANNEL_CREATE: "/channel/create",
 };
 
 export default API_ENDPOINTS;
