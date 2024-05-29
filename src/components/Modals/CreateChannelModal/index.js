@@ -159,7 +159,7 @@ const MultiStepForm = ({ closeModal, setProcessing }) => {
 
   useEffect(() => {
     setProcessing(false);
-  }, []);
+  }, [setProcessing]);
 
   return (
     <div className="step-container">
