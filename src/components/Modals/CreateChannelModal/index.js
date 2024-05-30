@@ -189,6 +189,7 @@ const MultiStepForm = ({ closeModal, setProcessing }) => {
         setStep(step + 1);
       }
     },
+    validateOnBlur: false,
   });
 
   const handleBack = () => {
