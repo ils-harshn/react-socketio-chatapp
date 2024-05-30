@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import XButton from "../../Button/XButton/XButton";
 import ModalWrapper from "../Wrapper";
 import styles from "./CreateChannelModal.module.css";
@@ -14,6 +14,109 @@ import ROUTES from "../../../router/ROUTES";
 import { useQueryClient } from "react-query";
 import QUERY_KEYS from "../../../api/queryKeys";
 
+const Step1 = ({ formik }) => {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [inputRef]);
+
+  return (
+    <div className="step1">
+      <h1 className="mb-16">What's the name of your company or team?</h1>
+      <p className="mb-16">
+        This will be the name of your ChatApp workspace - choose something that
+        your team will recognise.
+      </p>
+      <TextInput
+        placeholder="Enter workspace name"
+        width="full"
+        size="lg"
+        name="channelName"
+        type="text"
+        value={formik.values.channelName}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        innerRef={inputRef}
+      />
+      {formik.touched.channelName && formik.errors.channelName && (
+        <FormInputError className="mt-4">
+          {formik.errors.channelName}
+        </FormInputError>
+      )}
+    </div>
+  );
+};
+
+const Step2 = ({ formik }) => {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [inputRef]);
+
+  return (
+    <div className="step2">
+      <h1 className="mb-16">What's your name?</h1>
+      <p className="mb-16">
+        Adding your name helps your teammates to recognise and connect with you
+        more easily
+      </p>
+      <TextInput
+        placeholder="Enter your name"
+        width="full"
+        size="lg"
+        name="adminName"
+        type="text"
+        value={formik.values.adminName}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        innerRef={inputRef}
+      />
+      {formik.touched.adminName && formik.errors.adminName && (
+        <FormInputError className="mt-4">
+          {formik.errors.adminName}
+        </FormInputError>
+      )}
+    </div>
+  );
+};
+
+const Step3 = ({ formik }) => {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [inputRef]);
+
+  return (
+    <div className="step3">
+      <h1 className="mb-16">What's your team working on right now?</h1>
+      <p className="mb-16">
+        This could be anything; a project, campaign, event or the deal you're
+        trying to close.
+      </p>
+      <TextInput
+        placeholder="E.g. QA budget, autumn campaign"
+        width="full"
+        size="lg"
+        name="channelDescription"
+        type="text"
+        value={formik.values.channelDescription}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        innerRef={inputRef}
+      />
+      {formik.touched.channelDescription &&
+        formik.errors.channelDescription && (
+          <FormInputError className="mt-4">
+            {formik.errors.channelDescription}
+          </FormInputError>
+        )}
+    </div>
+  );
+};
+
 const MultiStepForm = ({ closeModal, setProcessing }) => {
   const pathname = useLocation().pathname;
   const queryClient = useQueryClient();
@@ -25,95 +128,22 @@ const MultiStepForm = ({ closeModal, setProcessing }) => {
   };
   const steps = [
     {
-      label: "What's the name of your company or team?",
       validationSchema: Yup.object().shape({
         channelName: Yup.string().required("Channel name is required"),
       }),
-      content: (formik) => (
-        <div className="step1">
-          <h1 className="mb-16">What's the name of your company or team?</h1>
-          <p className="mb-16">
-            This will be the name of your ChatApp workspace - choose something
-            that your team will recognise.
-          </p>
-          <TextInput
-            placeholder="Enter workspace name"
-            width="full"
-            size="lg"
-            name="channelName"
-            type="text"
-            value={formik.values.channelName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.channelName && formik.errors.channelName && (
-            <FormInputError className="mt-4">
-              {formik.errors.channelName}
-            </FormInputError>
-          )}
-        </div>
-      ),
+      content: (formik) => <Step1 formik={formik} />,
     },
     {
-      label: "What's your name?",
       validationSchema: Yup.object().shape({
         adminName: Yup.string().required("Your name is required"),
       }),
-      content: (formik) => (
-        <div className="step2">
-          <h1 className="mb-16">What's your name?</h1>
-          <p className="mb-16">
-            Adding your name helps your teammates to recognise and connect with
-            you more easily
-          </p>
-          <TextInput
-            placeholder="Enter your name"
-            width="full"
-            size="lg"
-            name="adminName"
-            type="text"
-            value={formik.values.adminName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.adminName && formik.errors.adminName && (
-            <FormInputError className="mt-4">
-              {formik.errors.adminName}
-            </FormInputError>
-          )}
-        </div>
-      ),
+      content: (formik) => <Step2 formik={formik} />,
     },
     {
-      label: "What's your team working on right now?",
       validationSchema: Yup.object().shape({
         channelDescription: Yup.string().required("Description is required"),
       }),
-      content: (formik) => (
-        <div className="step3">
-          <h1 className="mb-16">What's your team working on right now?</h1>
-          <p className="mb-16">
-            This could be anything; a project, campaign, event or the deal
-            you're trying to close.
-          </p>
-          <TextInput
-            placeholder="E.g. QA budget, autumn campaign"
-            width="full"
-            size="lg"
-            name="channelDescription"
-            type="text"
-            value={formik.values.channelDescription}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.channelDescription &&
-            formik.errors.channelDescription && (
-              <FormInputError className="mt-4">
-                {formik.errors.channelDescription}
-              </FormInputError>
-            )}
-        </div>
-      ),
+      content: (formik) => <Step3 formik={formik} />,
     },
   ];
 
