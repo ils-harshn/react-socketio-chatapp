@@ -1,6 +1,6 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useVerifyLoginMutation } from "../../api/auth/queryHooks";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import ROUTES from "../../router/ROUTES";
 import notify from "../../utils/notify";
 import { FullScreenLoader } from "../../components/Loader";
@@ -11,6 +11,7 @@ import { useQueryClient } from "react-query";
 const Protected = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(true);
   const { mutate } = useVerifyLoginMutation({
@@ -23,6 +24,10 @@ const Protected = () => {
       notify.info("Login required!");
     },
   });
+
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     mutate();
