@@ -7,8 +7,11 @@ import { FirstLetter } from "../../components/Avatar";
 import FooterP1 from "../../components/Footer";
 import XButton from "../../components/Button/XButton/XButton";
 import FormInputError from "../../components/Error";
+import { useNavigate } from "react-router-dom";
+import { ROUTES_FUCN } from "../../router/ROUTES";
 
 const List = ({ data }) => {
+  const navigate = useNavigate();
   if (data.length === 0)
     return (
       <div className={styles.ChannelListsLoader}>
@@ -35,7 +38,13 @@ const List = ({ data }) => {
             <div>{channel.description}</div>
           </div>
           <div>
-            <XButton>LUNCH</XButton>
+            <XButton
+              onClick={() =>
+                navigate(ROUTES_FUCN.CHANNELDASHBOARD(channel._id))
+              }
+            >
+              LUNCH
+            </XButton>
           </div>
         </div>
       </li>

@@ -8,6 +8,7 @@ import VerifyEmail from "../pages/VerifyEmail";
 import Dashboard from "../pages/dashboard";
 import Protected from "../Layout/Protected";
 import Settings from "../pages/settings";
+import ChannelDashboard from "../pages/channel/dashboard";
 
 const Router = () => {
   return (
@@ -25,6 +26,10 @@ const Router = () => {
             <Route index element={<Dashboard />} />
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
             <Route path={ROUTES.SETTINGS} element={<Settings />} />
+            <Route
+              path={ROUTES.CHANNELDASHBOARD}
+              element={<ChannelDashboard />}
+            />
           </Route>
         </Route>
       </Routes>
