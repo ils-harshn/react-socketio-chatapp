@@ -10,6 +10,7 @@ import FormInputError from "../../components/Error";
 import { useRegisterMutation } from "../../api/auth/queryHooks";
 import notify from "../../utils/notify";
 import { useNavigate } from "react-router-dom";
+import WebTokenStorer from "../../utils/webTokenStorer";
 
 const RegisterFooter = () => {
   return (
@@ -32,6 +33,7 @@ const RegisterForm = () => {
       });
     },
     onError: (error) => {
+      formik.setSubmitting(false);
       notify.error(`${error.response.data.message}`);
     },
   });
@@ -46,6 +48,7 @@ const RegisterForm = () => {
     },
     validationSchema: RegisterSchema,
     onSubmit: (values, action) => {
+      WebTokenStorer.clear();
       mutate(values);
     },
   });

@@ -43,6 +43,7 @@ const LoginForm = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: (values, actions) => {
+      WebTokenStorer.clear();
       mutate(values);
     },
   });

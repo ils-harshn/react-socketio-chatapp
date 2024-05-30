@@ -7,6 +7,7 @@ import { FullScreenLoader } from "../../components/Loader";
 import { useDispatch } from "react-redux";
 import { set_user_data } from "../../store/actions/AuthActions/index.types";
 import { useQueryClient } from "react-query";
+import WebTokenStorer from "../../utils/webTokenStorer";
 
 const Protected = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Protected = () => {
       setLoading(false);
     },
     onError: () => {
+      WebTokenStorer.clear();
       navigate(ROUTES.LOGIN);
       notify.info("Login required!");
     },
