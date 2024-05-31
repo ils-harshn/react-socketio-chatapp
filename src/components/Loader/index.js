@@ -11,7 +11,6 @@ export const FullScreenLoader = ({ warns = [] }) => {
   useEffect(() => {
     const intervals = warns.map((item) =>
       setTimeout(() => {
-        console.log(item.message);
         setWarn(item.message);
       }, item.time)
     );

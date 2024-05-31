@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ChannelDashboard = () => {
-  const { channelId } = useParams();
-  return <h2>{channelId}</h2>;
+  const { socket } = useSelector((reducers) => reducers.useSocketReducer);
+  return <h2>{socket.id}</h2>;
 };
 export default ChannelDashboard;

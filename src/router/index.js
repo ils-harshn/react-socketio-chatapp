@@ -9,6 +9,7 @@ import Dashboard from "../pages/dashboard";
 import Protected from "../Layout/Protected";
 import Settings from "../pages/settings";
 import ChannelDashboard from "../pages/channel/dashboard";
+import ChannelLayout from "../pages/channel/Layout";
 
 const Router = () => {
   return (
@@ -26,10 +27,13 @@ const Router = () => {
             <Route index element={<Dashboard />} />
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
             <Route path={ROUTES.SETTINGS} element={<Settings />} />
-            <Route
-              path={ROUTES.CHANNELDASHBOARD}
-              element={<ChannelDashboard />}
-            />
+
+            <Route element={<ChannelLayout />}>
+              <Route
+                path={ROUTES.CHANNELDASHBOARD}
+                element={<ChannelDashboard />}
+              />
+            </Route>
           </Route>
         </Route>
       </Routes>
