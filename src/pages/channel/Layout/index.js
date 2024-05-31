@@ -4,7 +4,10 @@ import { io } from "socket.io-client";
 import notify from "../../../utils/notify";
 import { FullScreenLoader } from "../../../components/Loader";
 import { useDispatch } from "react-redux";
-import { set_socket } from "../../../store/actions/SocketActions/index.types";
+import {
+  remove_socket,
+  set_socket,
+} from "../../../store/actions/SocketActions/index.types";
 import WebTokenStorer from "../../../utils/webTokenStorer";
 import ROUTES from "../../../router/ROUTES";
 
@@ -57,6 +60,7 @@ const ChannelLayout = () => {
       socket.off("disconnect", handleDisconnect);
       socket.off("connect_error", handleConnectError);
       socket.close();
+      dispatch(remove_socket());
     };
   }, [channelId, dispatch]);
 
