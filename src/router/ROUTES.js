@@ -19,7 +19,6 @@ export const ROUTES_TITLE = {
   [ROUTES.VERIFY_EMAIL]: "Verify Email",
   [ROUTES.DASHBOARD]: "Dashboard",
   [ROUTES.SETTINGS]: "Account Settings",
-  [ROUTES.CHANNELDASHBOARD]: "Loading",
 };
 
 export default ROUTES;
