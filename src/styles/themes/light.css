@@ -61,4 +61,8 @@
 
   /* avater */
   --FirstLetter-bg-color: rgb(83, 187, 83);
+
+  /* cnavbar */
+  --CNavbar-bg-color: rgb(228, 228, 228);
+  --CNavbar-SearchBoxContainer-bg-color: rgb(255, 255, 255);
 }

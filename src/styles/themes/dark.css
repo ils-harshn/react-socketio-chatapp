@@ -60,4 +60,8 @@ body[theme="dark"] {
 
   /* avater */
   --FirstLetter-bg-color: rgb(59, 97, 55);
+
+  /* cnavbar */
+  --CNavbar-bg-color: rgb(29, 29, 29);
+  --CNavbar-SearchBoxContainer-bg-color: rgb(77, 77, 77);
 }

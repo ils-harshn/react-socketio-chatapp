@@ -10,6 +10,10 @@ import {
 } from "../../../store/actions/SocketActions/index.types";
 import WebTokenStorer from "../../../utils/webTokenStorer";
 import ROUTES from "../../../router/ROUTES";
+import {
+  remove_channel_data,
+  set_channel_data,
+} from "../../../store/actions/ChannelActions/index.types";
 
 const SOCKET_STATUS = {
   CONNECTIING: 0,
@@ -33,7 +37,8 @@ const ChannelLayout = () => {
       }
     );
 
-    const handleConnect = () => {
+    const handleConnect = (data) => {
+      dispatch(set_channel_data(data));
       notify.success("Connection Established");
       dispatch(
         set_socket({
@@ -51,16 +56,17 @@ const ChannelLayout = () => {
       setSocketStatus(SOCKET_STATUS.CONNECT_ERROR);
     };
 
-    socket.on("connect", handleConnect);
+    socket.on("connected", handleConnect);
     socket.on("disconnect", handleDisconnect);
     socket.on("connect_error", handleConnectError);
 
     return () => {
-      socket.off("connect", handleConnect);
+      socket.off("connected", handleConnect);
       socket.off("disconnect", handleDisconnect);
       socket.off("connect_error", handleConnectError);
       socket.close();
       dispatch(remove_socket());
+      dispatch(remove_channel_data());
     };
   }, [channelId, dispatch]);
 

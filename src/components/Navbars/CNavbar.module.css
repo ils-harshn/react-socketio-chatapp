@@ -1,0 +1,43 @@
+.CNavbar {
+  height: 40px;
+  background-color: var(--CNavbar-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.SearchBoxContainer {
+  width: 100%;
+  max-width: 540px;
+  min-width: 280px;
+  height: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 9px;
+  font-size: 13px;
+  background-color: var(--CNavbar-SearchBoxContainer-bg-color);
+  cursor: pointer;
+}
+
+.SearchIcon {
+  width: 14px;
+  height: 14px;
+  stroke: var(--font-color);
+}
+
+.ExitIcon {
+  position: absolute;
+  stroke: var(--font-color);
+  width: 18px;
+  height: 18px;
+  right: 16px;
+  top: 12px;
+  cursor: pointer;
+}
+
+.ExitIcon:hover {
+  opacity: 0.5;
+}
