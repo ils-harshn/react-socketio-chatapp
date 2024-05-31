@@ -15,6 +15,26 @@ const Protected = () => {
   const location = useLocation();
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(true);
+
+  const warns = [
+    {
+      message: "Please Wait",
+      time: 2000,
+    },
+    {
+      message: "Please wait. The server is taking a longer time than usual.",
+      time: 6000,
+    },
+    {
+      message: "Lagata hai server fata.",
+      time: 12000,
+    },
+    {
+      message: "Tujhe lge toh refresh kr le page.",
+      time: 18000,
+    },
+  ];
+
   const { mutate } = useVerifyLoginMutation({
     onSuccess: (data) => {
       dispatch(set_user_data(data));
@@ -38,7 +58,7 @@ const Protected = () => {
     };
   }, [mutate, queryClient]);
 
-  if (loading) return <FullScreenLoader />;
+  if (loading) return <FullScreenLoader warns={warns} />;
 
   return <Outlet />;
 };
