@@ -28,16 +28,22 @@
   stroke: var(--font-color);
 }
 
-.ExitIcon {
-  position: absolute;
+.RightOptionIcons {
   stroke: var(--font-color);
   width: 18px;
   height: 18px;
-  right: 16px;
-  top: 12px;
   cursor: pointer;
 }
 
-.ExitIcon:hover {
+.RightOptionIcons:hover {
   opacity: 0.5;
+}
+
+.RightOptions {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }

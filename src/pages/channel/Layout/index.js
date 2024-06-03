@@ -3,7 +3,7 @@ import { Navigate, Outlet, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import notify from "../../../utils/notify";
 import { FullScreenLoader } from "../../../components/Loader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   remove_socket,
   set_socket,
@@ -24,6 +24,7 @@ const SOCKET_STATUS = {
 
 const ChannelLayout = () => {
   const { channelId } = useParams();
+  const user = useSelector((reducers) => reducers.userDataReducer);
   const [socketStatus, setSocketStatus] = useState(SOCKET_STATUS.CONNECTIING);
   const dispatch = useDispatch();
 
@@ -38,6 +39,7 @@ const ChannelLayout = () => {
     );
 
     const handleConnect = (data) => {
+      data.user["is_admin"] = data.channel.adminId === user._id;
       dispatch(set_channel_data(data));
       notify.success("Connection Established");
       dispatch(
@@ -68,7 +70,7 @@ const ChannelLayout = () => {
       dispatch(remove_socket());
       dispatch(remove_channel_data());
     };
-  }, [channelId, dispatch]);
+  }, [channelId, dispatch, user._id]);
 
   if (socketStatus === SOCKET_STATUS.CONNECTED) return <Outlet />;
   if (socketStatus === SOCKET_STATUS.DISCONNECTED) {
