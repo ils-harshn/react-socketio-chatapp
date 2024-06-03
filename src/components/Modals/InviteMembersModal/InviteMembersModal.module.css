@@ -1,0 +1,63 @@
+.AddIcon {
+  stroke: var(--font-color);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.AddIcon:hover {
+  opacity: 0.5;
+}
+
+.modal {
+  background-color: var(--modal-body-bg-color);
+  height: fit-content;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 90vw;
+  max-width: 700px;
+  min-width: 320px;
+  height: fit-content;
+}
+
+.modal :global svg.close {
+  fill: var(--modal-close-icon-color);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+
+.modal :global svg.close:hover {
+  fill: var(--modal-close-icon-hover-color);
+}
+
+.modal :global .banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--modal-banner-bg-color);
+  padding: 0 12px;
+  height: 45px;
+  color: var(--modal-banner-color);
+}
+
+.modal :global .banner .title {
+  color: var(--modal-banner-color);
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.modal :global .modal-body {
+  padding: 16px;
+  height: calc(100% - 78px);
+}
+
+.modal :global .banner .add-icon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  stroke: var(--modal-close-icon-color);
+}

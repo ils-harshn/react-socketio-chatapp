@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import styles from "./CNavbar.module.css";
-import { AddUserIcon, ExitChannelIcon, SearchIcon } from "../../assests/icons";
+import { ExitChannelIcon, SearchIcon } from "../../assests/icons";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../router/ROUTES";
 import notify from "../../utils/notify";
+import InviteMembersModal from "../Modals/InviteMembersModal";
 
 const CNavbar = () => {
   const navigate = useNavigate();
@@ -15,15 +16,10 @@ const CNavbar = () => {
   return (
     <nav className={styles.CNavbar}>
       <div className={styles.RightOptions}>
-        {user.is_admin ? (
-          <AddUserIcon
-            className={`${styles.RightOptionIcons} mr-16`}
-            title="Add members in channel"
-          />
-        ) : null}
+        {user.is_admin ? <InviteMembersModal /> : null}
         <ExitChannelIcon
-          title="Exit Channel"
-          className={styles.RightOptionIcons}
+          title={`Exit ${channel.name}`}
+          className={`${styles.RightOptionIcons} ml-8`}
           onClick={() => {
             notify.info("You have disconnected form the channel!");
             navigate(ROUTES.DASHBOARD);
