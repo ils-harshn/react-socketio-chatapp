@@ -140,3 +140,26 @@
   left: 8px;
   opacity: 0.6;
 }
+
+.sendButtonContainer {
+  display: flex;
+  justify-content: right;
+  margin-top: 16px;
+}
+
+.ErrorCountIcon {
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  margin-right: 4px;
+  fill: red;
+}
+
+.ErrorRemovalButton {
+  color: var(--link-color);
+  cursor: pointer;
+}
+
+.ErrorRemovalButton:hover {
+  text-decoration: underline;
+}

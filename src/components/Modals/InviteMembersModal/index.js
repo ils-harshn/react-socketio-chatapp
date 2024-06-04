@@ -9,6 +9,7 @@ import {
 } from "../../../assests/icons";
 import { useSelector } from "react-redux";
 import { EMAIL_REGEX } from "../../../utils/regex";
+import XButton from "../../Button/XButton/XButton";
 
 const EmailTag = ({ email, remove }) => {
   const isCorrectEmail = EMAIL_REGEX.test(email);
@@ -31,19 +32,26 @@ const EmailTag = ({ email, remove }) => {
   );
 };
 
-const EditableContent = () => {
+const EditableContent = ({ handleSubmit }) => {
   const [input, setInput] = useState("");
   const [emails, setEmails] = useState([]);
   const inputRef = useRef();
+  const [emailErrorCount, setEmailErrorCount] = useState(0);
   const { user } = useSelector((reducers) => reducers.useChannelReducer);
 
   const handleInput = (e) => setInput(e.target.value?.trim());
 
   const handleKeyDown = (e) => {
-    if (e.key === "Backspace" && input === "" && emails.length !== 0)
+    if (e.key === "Backspace" && input === "" && emails.length !== 0) {
       setEmails((prevEmails) => prevEmails.slice(0, -1));
+    }
 
-    if (e.key === "Enter" || e.key === "," || e.key === " ") {
+    if (
+      e.key === "Tab" ||
+      e.key === "Enter" ||
+      e.key === "," ||
+      e.key === " "
+    ) {
       e.preventDefault();
       let email = input.trim();
       if (email && !emails.some((eml) => eml === email)) {
@@ -57,43 +65,88 @@ const EditableContent = () => {
     setEmails(emails.filter((email) => email !== emailToRemove));
   };
 
+  const handleRemoveErrorEmails = () => {
+    setEmails(emails.filter((email) => EMAIL_REGEX.test(email)));
+  };
+
+  const handleErrorCount = (count) => {
+    setEmailErrorCount(count);
+    inputRef.current?.focus();
+  };
+
+  const handleSendClick = () => {
+    if (emailErrorCount === 0 || emails.length !== 0) handleSubmit(emails);
+  };
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    const correctEmails = emails.filter((email) => EMAIL_REGEX.test(email));
+    const errorCounts = emails.length - correctEmails.length;
+    handleErrorCount(errorCounts);
+  }, [emails]);
+
   return (
-    <div
-      className={styles.EditableContent}
-      tabIndex={-1}
-      onFocus={() => inputRef.current.focus()}
-    >
-      {input === "" && emails.length === 0 ? (
-        <span className={styles.EditableContentPlaceholder}>
-          name@{user.domain}
-        </span>
-      ) : null}
-      <div className={styles.EditableContentContainer}>
-        {emails.map((email, index) => (
-          <EmailTag
-            key={index}
-            email={email}
-            remove={() => handleRemoveEmail(email)}
-          />
-        ))}
-        <input
-          ref={inputRef}
-          tabIndex={"0"}
-          className={styles.EditableContentInput}
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
-          value={input}
-        ></input>
+    <>
+      <div
+        className={styles.EditableContent}
+        tabIndex={-1}
+        onFocus={() => inputRef.current.focus()}
+      >
+        {input === "" && emails.length === 0 ? (
+          <span className={styles.EditableContentPlaceholder}>
+            name@{user.domain}
+          </span>
+        ) : null}
+        <div className={styles.EditableContentContainer}>
+          {emails.map((email, index) => (
+            <EmailTag
+              key={index}
+              email={email}
+              remove={() => handleRemoveEmail(email)}
+            />
+          ))}
+          <input
+            ref={inputRef}
+            tabIndex={"0"}
+            className={styles.EditableContentInput}
+            onChange={handleInput}
+            onKeyDown={handleKeyDown}
+            value={input}
+          ></input>
+        </div>
       </div>
-    </div>
+
+      {emailErrorCount ? (
+        <div className="mt-4 flex-al-center">
+          <span>
+            <CricledExclaimationIcon className={styles.ErrorCountIcon} />{" "}
+          </span>
+          <span className="mr-8">{emailErrorCount} error.</span>
+          <span
+            className={styles.ErrorRemovalButton}
+            onClick={handleRemoveErrorEmails}
+          >
+            Remove all items with errors
+          </span>
+        </div>
+      ) : null}
+
+      <div className={styles.sendButtonContainer}>
+        <XButton
+          onClick={handleSendClick}
+          disabled={emailErrorCount !== 0 || emails.length === 0}
+        >
+          SEND
+        </XButton>
+      </div>
+    </>
   );
 };
 
-const ModalBody = ({ closeModal }) => {
+const ModalBody = ({ closeModal, handleSubmit }) => {
   const { channel } = useSelector((reducers) => reducers.useChannelReducer);
 
   return (
@@ -108,7 +161,7 @@ const ModalBody = ({ closeModal }) => {
 
       <div className="modal-body">
         <h4>To:</h4>
-        <EditableContent />
+        <EditableContent handleSubmit={handleSubmit} />
       </div>
     </>
   );
@@ -130,6 +183,10 @@ export const InviteMembersModal = () => {
     setOpen(true);
   };
 
+  const handleSubmit = (emails) => {
+    console.log(emails);
+  };
+
   return (
     <>
       <AddUserIcon onClick={openModal} className={styles.AddIcon} />
@@ -139,7 +196,7 @@ export const InviteMembersModal = () => {
         onClose={closeModal}
       >
         <div className={`modal ${styles.modal}`}>
-          <ModalBody closeModal={closeModal} />
+          <ModalBody closeModal={closeModal} handleSubmit={handleSubmit} />
         </div>
       </ModalWrapper>
     </>
