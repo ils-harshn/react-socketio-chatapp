@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { EMAIL_REGEX } from "../../../utils/regex";
 import XButton from "../../Button/XButton/XButton";
 import notify from "../../../utils/notify";
+import { useChannelInviteMutation } from "../../../api/channel/queryHooks";
 
 const EmailTag = ({ email, remove }) => {
   const isCorrectEmail = EMAIL_REGEX.test(email);
@@ -180,6 +181,8 @@ const ModalBody = ({ closeModal, handleSubmit }) => {
 export const InviteMembersModal = () => {
   const [open, setOpen] = useState(false);
   const [isExited, setExited] = useState(false);
+  const { mutate } = useChannelInviteMutation();
+  const { channel } = useSelector((reducers) => reducers.useChannelReducer);
 
   const closeModal = () => {
     setExited(true);
@@ -194,17 +197,23 @@ export const InviteMembersModal = () => {
   };
 
   const handleSubmit = (emails) => {
-    const sendInvitationPromise = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve("Invitation Sent");
-      }, 2000);
-    });
-
-    notify.promise(sendInvitationPromise, {
-      pending: "Sending Invitation...",
-      success: "Invitation Sent!",
-      error: "Something went wrong!",
-    });
+    const payload = {
+      emails,
+      channelId: channel._id,
+    };
+    notify.promise(
+      new Promise((resolve, reject) => {
+        mutate(payload, {
+          onSuccess: resolve,
+          onError: reject,
+        });
+      }),
+      {
+        pending: "Sending Invitation...",
+        success: "Invitation Sent Successfully!",
+        error: "Error sending invitation",
+      }
+    );
     closeModal();
   };
 

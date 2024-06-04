@@ -21,3 +21,15 @@ export const listChannel = async () => {
   const response = await api.request(config);
   return response;
 };
+
+export const channelInvite = async (data) => {
+  let config = {
+    method: "post",
+    url: API_ENDPOINTS.CHANNEL_INVITE(data.channelId),
+    data: {
+      emails: data.emails,
+    },
+  };
+  const response = await api.request(config);
+  return response;
+};
