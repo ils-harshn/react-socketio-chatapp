@@ -10,6 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import { EMAIL_REGEX } from "../../../utils/regex";
 import XButton from "../../Button/XButton/XButton";
+import notify from "../../../utils/notify";
 
 const EmailTag = ({ email, remove }) => {
   const isCorrectEmail = EMAIL_REGEX.test(email);
@@ -184,7 +185,18 @@ export const InviteMembersModal = () => {
   };
 
   const handleSubmit = (emails) => {
-    console.log(emails);
+    const sendInvitationPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("Invitation Sent");
+      }, 2000);
+    });
+
+    notify.promise(sendInvitationPromise, {
+      pending: "Sending Invitation...",
+      success: "Invitation Sent!",
+      error: "Something went wrong!",
+    });
+    closeModal();
   };
 
   return (
