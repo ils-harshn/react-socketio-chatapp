@@ -62,6 +62,14 @@ const EditableContent = ({ handleSubmit }) => {
     }
   };
 
+  const handleOnPaste = (e) => {
+    e.preventDefault();
+    let pastedText = e.clipboardData.getData("Text");
+    let newEmails = pastedText.split(",").map((email) => email.trim());
+    newEmails = newEmails.filter((email) => email.length);
+    setEmails([...emails, ...newEmails]);
+  };
+
   const handleRemoveEmail = (emailToRemove) => {
     setEmails(emails.filter((email) => email !== emailToRemove));
   };
@@ -115,6 +123,7 @@ const EditableContent = ({ handleSubmit }) => {
             className={styles.EditableContentInput}
             onChange={handleInput}
             onKeyDown={handleKeyDown}
+            onPaste={handleOnPaste}
             value={input}
           ></input>
         </div>
