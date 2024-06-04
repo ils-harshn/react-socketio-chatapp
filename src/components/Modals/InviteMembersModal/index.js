@@ -40,10 +40,16 @@ const EditableContent = () => {
   const handleInput = (e) => setInput(e.target.value?.trim());
 
   const handleKeyDown = (e) => {
+    if (e.key === "Backspace" && input === "" && emails.length !== 0)
+      setEmails((prevEmails) => prevEmails.slice(0, -1));
+
     if (e.key === "Enter" || e.key === "," || e.key === " ") {
       e.preventDefault();
-      setEmails([...emails, input]);
-      setInput("");
+      let email = input.trim();
+      if (email && !emails.some((eml) => eml === email)) {
+        setEmails([...emails, input]);
+        setInput("");
+      }
     }
   };
 
