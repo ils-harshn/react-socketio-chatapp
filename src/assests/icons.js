@@ -3,5 +3,15 @@ import { ReactComponent as AddchannelIcon } from "./svg/addchannel.svg";
 import { ReactComponent as SearchIcon } from "./svg/search.svg";
 import { ReactComponent as ExitChannelIcon } from "./svg/exit-channel.svg";
 import { ReactComponent as AddUserIcon } from "./svg/adduser.svg";
+import { ReactComponent as CrossIcon } from "./svg/cross.svg";
+import { ReactComponent as CricledExclaimationIcon } from "./svg/circled-exclaimation.svg";
 
-export { CloseIcon, AddchannelIcon, SearchIcon, ExitChannelIcon, AddUserIcon };
+export {
+  CloseIcon,
+  AddchannelIcon,
+  SearchIcon,
+  ExitChannelIcon,
+  AddUserIcon,
+  CrossIcon,
+  CricledExclaimationIcon,
+};

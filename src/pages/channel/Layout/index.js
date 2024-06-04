@@ -40,6 +40,7 @@ const ChannelLayout = () => {
 
     const handleConnect = (data) => {
       data.user["is_admin"] = data.channel.adminId === user._id;
+      data.user["domain"] = user.email.split("@")[1];
       dispatch(set_channel_data(data));
       notify.success("Connection Established");
       dispatch(
@@ -70,7 +71,7 @@ const ChannelLayout = () => {
       dispatch(remove_socket());
       dispatch(remove_channel_data());
     };
-  }, [channelId, dispatch, user._id]);
+  }, [channelId, dispatch, user._id, user.email]);
 
   if (socketStatus === SOCKET_STATUS.CONNECTED) return <Outlet />;
   if (socketStatus === SOCKET_STATUS.DISCONNECTED) {
