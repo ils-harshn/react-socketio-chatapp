@@ -1,0 +1,5 @@
+.Nav {
+  background-color: var(--CNavbar-bg-color);
+  height: calc(100vh - 64px);
+  padding: 12px;
+}
