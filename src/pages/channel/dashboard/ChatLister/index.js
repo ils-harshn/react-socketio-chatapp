@@ -14,7 +14,7 @@ const Spaces = () => {
   }, [socket]);
   return (
     <div>
-      <div>Channels</div>
+      <div>Spaces</div>
       <div>
         <ul>
           {data.map((item) => (
