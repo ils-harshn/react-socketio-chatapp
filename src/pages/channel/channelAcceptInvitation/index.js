@@ -12,7 +12,7 @@ const AcceptChannelInvitation = () => {
     useChannelAcceptInviteMutation({
       onSuccess: (data) => {
         setTimeout(() => {
-          navigate(ROUTES_FUCN.CHANNELDASHBOARD(data.channel._id));
+          navigate(ROUTES_FUCN.CHANNELDASHBOARD(data.channelId));
         }, 1000);
       },
       onError: () => {
