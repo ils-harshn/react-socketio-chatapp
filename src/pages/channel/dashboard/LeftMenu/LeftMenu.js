@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { FirstLetter } from "../../../components/Avatar";
+import { FirstLetter } from "../../../../components/Avatar";
 import styles from "./LeftMenu.module.css";
 
 const LeftMenu = () => {
