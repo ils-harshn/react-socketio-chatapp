@@ -6,10 +6,12 @@ const ROUTES = {
   DASHBOARD: "/user/dashboard",
   SETTINGS: "/user/settings",
   CHANNELDASHBOARD: "/channel/:channelId",
+  CHANNELACCEPTINVITATION: "/channel/accept-invitation/:invitationId",
 };
 
 export const ROUTES_FUCN = {
   CHANNELDASHBOARD: (id) => `/channel/${id}`,
+  CHANNELACCEPTINVITATION: (id) => `/channel/accept-invitation/${id}`,
 };
 
 export const ROUTES_TITLE = {

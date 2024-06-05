@@ -5,6 +5,7 @@ const API_ENDPOINTS = {
   VERIFY_LOGIN: "/user/verifyUserToken",
   CHANNEL_CREATE: "/channel/create",
   LIST_CHANNEL: "/channel/list",
+  CHANNEL_ACCEPTINVITE: "/channel/accept-invitation",
   CHANNEL_INVITE: (channelId) => `/channel/invite/${channelId}`,
 };
 

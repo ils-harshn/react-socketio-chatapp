@@ -33,3 +33,13 @@ export const channelInvite = async (data) => {
   const response = await api.request(config);
   return response;
 };
+
+export const channelAcceptInvitation = async (data) => {
+  let config = {
+    method: "post",
+    url: API_ENDPOINTS.CHANNEL_ACCEPTINVITE,
+    data,
+  };
+  const response = await api.request(config);
+  return response;
+};

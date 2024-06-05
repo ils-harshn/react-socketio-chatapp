@@ -1,7 +1,12 @@
 import { useMutation, useQuery } from "react-query";
 import QUERY_KEYS from "../queryKeys";
 import rqConfig from "../config";
-import { channelCreate, channelInvite, listChannel } from "./queryFunctions";
+import {
+  channelAcceptInvitation,
+  channelCreate,
+  channelInvite,
+  listChannel,
+} from "./queryFunctions";
 
 export const useChannelCreateMutation = (config = {}) =>
   useMutation({
@@ -23,6 +28,14 @@ export const useChannelInviteMutation = (config = {}) =>
   useMutation({
     mutationFn: (payload) => channelInvite(payload),
     mutationKey: [QUERY_KEYS.CHANNELINVITE],
+    ...rqConfig,
+    ...config,
+  });
+
+export const useChannelAcceptInviteMutation = (config = {}) =>
+  useMutation({
+    mutationFn: (payload) => channelAcceptInvitation(payload),
+    mutationKey: [QUERY_KEYS.CHANNELACCEPTINVITE],
     ...rqConfig,
     ...config,
   });

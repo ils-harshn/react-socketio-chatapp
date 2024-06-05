@@ -10,6 +10,7 @@ import Protected from "../Layout/Protected";
 import Settings from "../pages/settings";
 import ChannelDashboard from "../pages/channel/dashboard";
 import ChannelLayout from "../pages/channel/Layout";
+import AcceptChannelInvitation from "../pages/channel/channelAcceptInvitation";
 
 const Router = () => {
   return (
@@ -27,6 +28,10 @@ const Router = () => {
             <Route index element={<Dashboard />} />
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
             <Route path={ROUTES.SETTINGS} element={<Settings />} />
+            <Route
+              path={ROUTES.CHANNELACCEPTINVITATION}
+              element={<AcceptChannelInvitation />}
+            />
 
             <Route element={<ChannelLayout />}>
               <Route
