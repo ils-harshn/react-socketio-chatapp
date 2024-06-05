@@ -8,4 +8,6 @@
   margin-bottom: 8px;
   margin-right: 16px;
   border-radius: 6px;
+
+  display: flex;
 }
