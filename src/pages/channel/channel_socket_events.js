@@ -11,6 +11,9 @@ const CHANNEL_SOCKET_EVENTS = {
   // req - res
   REQ_SPACE_LIST: "REQ_SPACE_LIST",
   RES_SPACE_LIST: "RES_SPACE_LIST",
+
+  // LOGGER
+  LOGGER: "LOGGER",
 };
 
 export default CHANNEL_SOCKET_EVENTS;
