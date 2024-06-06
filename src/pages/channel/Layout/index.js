@@ -14,6 +14,7 @@ import {
   remove_channel_data,
   set_channel_data,
 } from "../../../store/actions/ChannelActions/index.types";
+import CHANNEL_SOCKET_EVENTS from "../channel_socket_events";
 
 const SOCKET_STATUS = {
   CONNECTIING: 0,
@@ -59,14 +60,14 @@ const ChannelLayout = () => {
       setSocketStatus(SOCKET_STATUS.CONNECT_ERROR);
     };
 
-    socket.on("connected", handleConnect);
-    socket.on("disconnect", handleDisconnect);
-    socket.on("connect_error", handleConnectError);
+    socket.on(CHANNEL_SOCKET_EVENTS.CONNECTED, handleConnect);
+    socket.on(CHANNEL_SOCKET_EVENTS.DISCONNECT, handleDisconnect);
+    socket.on(CHANNEL_SOCKET_EVENTS.CONNECT_ERROR, handleConnectError);
 
     return () => {
-      socket.off("connected", handleConnect);
-      socket.off("disconnect", handleDisconnect);
-      socket.off("connect_error", handleConnectError);
+      socket.off(CHANNEL_SOCKET_EVENTS.CONNECTED, handleConnect);
+      socket.off(CHANNEL_SOCKET_EVENTS.DISCONNECT, handleDisconnect);
+      socket.off(CHANNEL_SOCKET_EVENTS.CONNECT_ERROR, handleConnectError);
       socket.close();
       dispatch(remove_socket());
       dispatch(remove_channel_data());
