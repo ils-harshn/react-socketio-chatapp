@@ -80,3 +80,7 @@
   display: flex;
   align-items: center;
 }
+
+.z-ne-1000 {
+  z-index: -1000;
+}

@@ -11,8 +11,32 @@ import { useDebounce } from "use-debounce";
 import { useChannelMemberSearch } from "../../api/channel/queryHooks";
 import { FirstLetter } from "../Avatar";
 import { Spinner } from "../Loader";
+import CHANNEL_SOCKET_EVENTS from "../../pages/channel/channel_socket_events";
 
-const MemberSearch = ({ searchText }) => {
+const Member = ({ member, setOpen }) => {
+  const { socket } = useSelector((reducers) => reducers.useSocketReducer);
+
+  const startConversation = () => {
+    socket.emit(CHANNEL_SOCKET_EVENTS.REQ_CREATE_CONVERSATION, member);
+
+    setTimeout(() => {
+      setOpen(false);
+    }, 100);
+  };
+
+  return (
+    <li className={styles.MemberSearchLiContainer} onClick={startConversation}>
+      <span>
+        <FirstLetter title={member.memberName} size={"sm"} />
+      </span>
+      <span className="ml-8">
+        @<span>{member.memberName}</span>
+      </span>
+    </li>
+  );
+};
+
+const MemberSearch = ({ searchText, setOpen }) => {
   const { channel } = useSelector((reducers) => reducers.useChannelReducer);
   const { data, isLoading, isError, refetch } = useChannelMemberSearch(
     {
@@ -44,14 +68,7 @@ const MemberSearch = ({ searchText }) => {
         <h3 className={styles.MemberSearchContainerLabel}>Members</h3>
         <ul className={styles.MemberSearchUlContainer}>
           {data.map((member) => (
-            <li key={member._id} className={styles.MemberSearchLiContainer}>
-              <span>
-                <FirstLetter title={member.memberName} size={"sm"} />
-              </span>
-              <span className="ml-8">
-                @<span>{member.memberName}</span>
-              </span>
-            </li>
+            <Member key={member._id} member={member} setOpen={setOpen} />
           ))}
         </ul>
       </div>
@@ -64,7 +81,7 @@ const MemberSearch = ({ searchText }) => {
   );
 };
 
-const EditableContent = () => {
+const EditableContent = ({ setOpen }) => {
   const [input, setInput] = useState("");
   const [dinput] = useDebounce(input, 200);
   const inputRef = useRef();
@@ -109,7 +126,7 @@ const EditableContent = () => {
 
       {dinput ? (
         <>
-          <MemberSearch searchText={dinput} />
+          <MemberSearch searchText={dinput} setOpen={setOpen} />
         </>
       ) : (
         <div className={styles.EmptyMessage}>
@@ -124,7 +141,7 @@ const Search = ({ setOpen }) => {
   return (
     <OutsideClickHandler onOutsideClick={() => setOpen(false)}>
       <div className={styles.Search}>
-        <EditableContent />
+        <EditableContent setOpen={setOpen} />
       </div>
     </OutsideClickHandler>
   );
