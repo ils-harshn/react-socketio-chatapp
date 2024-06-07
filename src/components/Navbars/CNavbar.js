@@ -45,6 +45,8 @@ const MemberSearch = ({ searchText, setOpen }) => {
     },
     {
       enabled: false,
+      cacheTime: 0,
+      staleTime: 0,
     }
   );
 

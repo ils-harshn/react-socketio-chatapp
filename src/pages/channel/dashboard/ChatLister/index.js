@@ -10,8 +10,18 @@ const Conversations = () => {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    const handleCreateConversation = (data) => {
-      setdata((prev) => [...prev, data.member]);
+    const handleCreateConversation = (convers) => {
+      setdata((prev) => {
+        let isConversationOnFE = false;
+        prev.forEach((item) => {
+          if (item._id === convers.member._id) {
+            isConversationOnFE = true;
+          }
+        });
+
+        if (isConversationOnFE) return prev;
+        return [...prev, convers.member];
+      });
     };
 
     socket.on(
@@ -19,7 +29,28 @@ const Conversations = () => {
       handleCreateConversation
     );
 
+    const handleConversationList = (convers) => {
+      let _data = convers.map((item) => ({
+        _id: item.to._id,
+        memberName: item.to.memberName,
+        role: item.to.role,
+      }));
+
+      setdata(_data);
+    };
+
+    socket.on(
+      CHANNEL_SOCKET_EVENTS.RES_CONVERSATION_LIST,
+      handleConversationList
+    );
+
+    socket.emit(CHANNEL_SOCKET_EVENTS.REQ_CONVERSATION_LIST);
+
     return () => {
+      socket.off(
+        CHANNEL_SOCKET_EVENTS.RES_CONVERSATION_LIST,
+        handleConversationList
+      );
       socket.off(
         CHANNEL_SOCKET_EVENTS.RES_CREATE_CONVERSATION,
         handleCreateConversation
