@@ -130,9 +130,15 @@ const Spaces = () => {
   );
 };
 
+const WorkspaceName = () => {
+  const { channel } = useSelector((reducers) => reducers.useChannelReducer);
+  return <div className={styles.WorkspaceName}>{channel.name}</div>;
+};
+
 const ChatLister = () => {
   return (
     <div className={styles.ChatLister}>
+      <WorkspaceName />
       <Spaces />
       <Conversations />
     </div>
