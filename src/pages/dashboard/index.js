@@ -43,7 +43,7 @@ const List = ({ data }) => {
                 navigate(ROUTES_FUCN.CHANNELDASHBOARD(channel._id))
               }
             >
-              LUNCH
+              LAUNCH
             </XButton>
           </div>
         </div>
