@@ -30,8 +30,13 @@ const MemberSearch = ({ searchText }) => {
     }
   }, [searchText, refetch]);
 
-  if (isLoading) return <Spinner />;
-  if (isError) return <p>Error</p>;
+  if (isLoading)
+    return (
+      <div className={styles.MemberLoaderContainer}>
+        <Spinner />
+      </div>
+    );
+  if (isError) return null;
 
   if (data && data.length)
     return (
@@ -130,7 +135,7 @@ const CNavbar = () => {
   const { channel, user } = useSelector(
     (reducers) => reducers.useChannelReducer
   );
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <nav className={styles.CNavbar}>
