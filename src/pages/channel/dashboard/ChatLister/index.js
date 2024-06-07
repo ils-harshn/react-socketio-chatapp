@@ -4,6 +4,56 @@ import { useEffect, useState } from "react";
 import CHANNEL_SOCKET_EVENTS from "../../channel_socket_events";
 import { CaretDownIcon, CaretRightIcon } from "../../../../assests/icons";
 
+const Conversations = () => {
+  const { socket } = useSelector((reducers) => reducers.useSocketReducer);
+  const [data, setdata] = useState([]);
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    const handleCreateConversation = (data) => {
+      setdata((prev) => [...prev, data.member]);
+    };
+
+    socket.on(
+      CHANNEL_SOCKET_EVENTS.RES_CREATE_CONVERSATION,
+      handleCreateConversation
+    );
+
+    return () => {
+      socket.off(
+        CHANNEL_SOCKET_EVENTS.RES_CREATE_CONVERSATION,
+        handleCreateConversation
+      );
+    };
+  }, [socket]);
+  return (
+    <div className={styles.SpacesContainer}>
+      <div
+        className={styles.SpaceLabelContainer}
+        onClick={() => setOpen(!open)}
+      >
+        <div className={styles.CaretState}>
+          {open ? (
+            <CaretDownIcon className={styles.CaretIcon} />
+          ) : (
+            <CaretRightIcon className={styles.CaretIcon} />
+          )}
+        </div>
+        <div className={styles.SpaceLabel}>DMs</div>
+      </div>
+      {open ? (
+        <ul className={styles.SpacesListContainer}>
+          {data.map((member) => (
+            <li className={styles.Space} key={member._id}>
+              {member.memberName}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+};
+
 const Spaces = () => {
   const { socket } = useSelector((reducers) => reducers.useSocketReducer);
   const [data, setdata] = useState([]);
@@ -53,6 +103,7 @@ const ChatLister = () => {
   return (
     <div className={styles.ChatLister}>
       <Spaces />
+      <Conversations />
     </div>
   );
 };
