@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import styles from "./ChatLister.module.css";
 import { useEffect, useState } from "react";
 import CHANNEL_SOCKET_EVENTS from "../../channel_socket_events";
+import { CaretDownIcon, CaretRightIcon } from "../../../../assests/icons";
 
 const Spaces = () => {
   const { socket } = useSelector((reducers) => reducers.useSocketReducer);
   const [data, setdata] = useState([]);
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     const handleSpaceList = (data) => {
@@ -20,15 +22,29 @@ const Spaces = () => {
     };
   }, [socket]);
   return (
-    <div>
-      <div>Spaces</div>
-      <div>
-        <ul>
+    <div className={styles.SpacesContainer}>
+      <div
+        className={styles.SpaceLabelContainer}
+        onClick={() => setOpen(!open)}
+      >
+        <div className={styles.CaretState}>
+          {open ? (
+            <CaretDownIcon className={styles.CaretIcon} />
+          ) : (
+            <CaretRightIcon className={styles.CaretIcon} />
+          )}
+        </div>
+        <div className={styles.SpaceLabel}>Spaces</div>
+      </div>
+      {open ? (
+        <ul className={styles.SpacesListContainer}>
           {data.map((item) => (
-            <li key={item.space._id}>{item.space.name}</li>
+            <li className={styles.Space} key={item.space._id}>
+              {item.space.name}
+            </li>
           ))}
         </ul>
-      </div>
+      ) : null}
     </div>
   );
 };

@@ -2,3 +2,56 @@
   width: 300px;
   border-right: 1px solid #d8e0ec4d;
 }
+
+.SpaceLabelContainer {
+  display: flex;
+  padding: 2px 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.CaretState {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CaretIcon {
+  width: 14px;
+  height: 14px;
+  fill: rgb(177, 177, 177);
+  margin-right: 4px;
+  padding: 4px;
+}
+
+.CaretIcon:hover {
+  fill: rgb(202, 202, 202);
+}
+
+.SpaceLabel {
+  padding: 4px;
+  color: rgb(177, 177, 177);
+  border-radius: 9px;
+}
+
+.SpaceLabel:hover {
+  color: rgb(202, 202, 202);
+}
+
+.SpacesListContainer {
+  padding: 0 8px;
+  list-style: none;
+}
+
+.Space {
+  display: flex;
+  padding: 4px 12px;
+  color: rgb(177, 177, 177);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Space:hover {
+  background-color: #3f3f3f;
+  color: rgb(214, 214, 214);
+}
