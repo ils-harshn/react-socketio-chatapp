@@ -70,7 +70,7 @@ const Conversations = () => {
             <CaretRightIcon className={styles.CaretIcon} />
           )}
         </div>
-        <div className={styles.SpaceLabel}>DMs</div>
+        <div className={styles.SpaceLabel}>Direct messages</div>
       </div>
       {open ? (
         <ul className={styles.SpacesListContainer}>
