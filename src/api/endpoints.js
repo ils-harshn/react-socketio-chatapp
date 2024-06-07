@@ -7,6 +7,8 @@ const API_ENDPOINTS = {
   LIST_CHANNEL: "/channel/list",
   CHANNEL_ACCEPTINVITE: "/channel/accept-invitation",
   CHANNEL_INVITE: (channelId) => `/channel/invite/${channelId}`,
+  CHANNEL_MEMBER_SEARCH: (channelId, name = "") =>
+    `/${channelId}/member/search?name=${name}`,
 };
 
 export default API_ENDPOINTS;

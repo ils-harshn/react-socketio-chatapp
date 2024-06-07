@@ -7,9 +7,61 @@ import notify from "../../utils/notify";
 import InviteMembersModal from "../Modals/InviteMembersModal";
 import { useEffect, useRef, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
+import { useDebounce } from "use-debounce";
+import { useChannelMemberSearch } from "../../api/channel/queryHooks";
+import { FirstLetter } from "../Avatar";
+import { Spinner } from "../Loader";
+
+const MemberSearch = ({ searchText }) => {
+  const { channel } = useSelector((reducers) => reducers.useChannelReducer);
+  const { data, isLoading, isError, refetch } = useChannelMemberSearch(
+    {
+      channelId: channel._id,
+      name: searchText,
+    },
+    {
+      enabled: false,
+    }
+  );
+
+  useEffect(() => {
+    if (searchText) {
+      refetch();
+    }
+  }, [searchText, refetch]);
+
+  if (isLoading) return <Spinner />;
+  if (isError) return <p>Error</p>;
+
+  if (data && data.length)
+    return (
+      <div className={styles.MemberSearchContainer}>
+        <h3 className={styles.MemberSearchContainerLabel}>Members</h3>
+        <ul className={styles.MemberSearchUlContainer}>
+          {data.map((member) => (
+            <li key={member._id} className={styles.MemberSearchLiContainer}>
+              <span>
+                <FirstLetter title={member.memberName} size={"sm"} />
+              </span>
+              <span className="ml-8">
+                @<span>{member.memberName}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+
+  return (
+    <div className={styles.NoMemberFound}>
+      <p>No Member Found</p>
+    </div>
+  );
+};
 
 const EditableContent = () => {
   const [input, setInput] = useState("");
+  const [dinput] = useDebounce(input, 200);
   const inputRef = useRef();
 
   const handleInput = (e) => {
@@ -49,6 +101,16 @@ const EditableContent = () => {
           <CrossIcon />
         </div>
       </div>
+
+      {dinput ? (
+        <>
+          <MemberSearch searchText={dinput} />
+        </>
+      ) : (
+        <div className={styles.EmptyMessage}>
+          Please type something to make a search
+        </div>
+      )}
     </>
   );
 };

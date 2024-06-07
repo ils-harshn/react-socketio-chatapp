@@ -71,12 +71,14 @@
   stroke: white;
   width: 16px;
   height: 16px;
+  margin-top: 6px;
 }
 
 .EdCrossIcon svg {
   fill: white;
   width: 16px;
   height: 16px;
+  margin-top: 4px;
 }
 
 .EditableContent {
@@ -97,4 +99,42 @@
   background-color: transparent;
   color: white;
   font-size: 16px;
+}
+
+.MemberSearchUlContainer {
+  list-style: none;
+}
+
+.MemberSearchLiContainer {
+  padding: 8px 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.MemberSearchLiContainer span {
+  color: rgb(177, 177, 177);
+}
+
+.MemberSearchLiContainer:hover span {
+  color: rgb(214, 214, 214);
+}
+
+.MemberSearchLiContainer:hover {
+  background-color: #3f3f3f;
+}
+
+.MemberSearchContainerLabel {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgb(83, 83, 83);
+  background-color: rgb(58, 58, 58);
+}
+
+.EmptyMessage,
+.NoMemberFound {
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
 }

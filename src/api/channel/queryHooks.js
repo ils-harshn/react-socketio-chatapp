@@ -5,6 +5,7 @@ import {
   channelAcceptInvitation,
   channelCreate,
   channelInvite,
+  channelMemberSearch,
   listChannel,
 } from "./queryFunctions";
 
@@ -36,6 +37,14 @@ export const useChannelAcceptInviteMutation = (config = {}) =>
   useMutation({
     mutationFn: (payload) => channelAcceptInvitation(payload),
     mutationKey: [QUERY_KEYS.CHANNELACCEPTINVITE],
+    ...rqConfig,
+    ...config,
+  });
+
+export const useChannelMemberSearch = (payload, config = {}) =>
+  useQuery({
+    queryFn: () => channelMemberSearch(payload),
+    queryKey: [QUERY_KEYS.CHANNELMEMBERSEARCH],
     ...rqConfig,
     ...config,
   });

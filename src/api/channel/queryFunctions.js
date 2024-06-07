@@ -43,3 +43,14 @@ export const channelAcceptInvitation = async (data) => {
   const response = await api.request(config);
   return response;
 };
+
+export const channelMemberSearch = async (data) => {
+  console.log(data);
+  let config = {
+    method: "get",
+    url: API_ENDPOINTS.CHANNEL_MEMBER_SEARCH(data.channelId, data.name),
+  };
+
+  const response = await api.request(config);
+  return response;
+};
