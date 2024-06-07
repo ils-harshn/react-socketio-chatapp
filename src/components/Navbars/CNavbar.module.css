@@ -8,6 +8,7 @@
 }
 
 .SearchBoxContainer {
+  position: relative;
   width: 100%;
   max-width: 540px;
   min-width: 280px;
@@ -46,4 +47,54 @@
   height: 40px;
   display: flex;
   align-items: center;
+}
+
+.Search {
+  background-color: rgb(50, 50, 50);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid rgb(83, 83, 83);
+  min-height: 100px;
+}
+
+.EditableContentContainer {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  border-bottom: 1px solid rgb(83, 83, 83);
+}
+
+.EdSearchIcon svg {
+  stroke: white;
+  width: 16px;
+  height: 16px;
+}
+
+.EdCrossIcon svg {
+  fill: white;
+  width: 16px;
+  height: 16px;
+}
+
+.EditableContent {
+  flex-grow: 1;
+  display: flex;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  max-height: 300px;
+  overflow: auto;
+  padding: 8px;
+}
+
+.EditableContentInput {
+  flex-grow: 1;
+  height: 32px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
 }
