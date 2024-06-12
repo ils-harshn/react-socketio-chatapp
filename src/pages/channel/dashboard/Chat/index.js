@@ -1,18 +1,10 @@
 import { useSelector } from "react-redux";
-import styles from "./Chat.module.css";
 import CHAT_TYPES from "./chat.types";
-
-const MultiPeerChat = ({ space }) => {
-  return <div className={styles.Chat}>{space.name}</div>;
-};
-
-const PeerChat = ({ member }) => {
-  return <div className={styles.Chat}>{member.memberName}</div>;
-};
+import MultiPeerChat from "./MultiPeerChat";
+import PeerChat from "./PeerChat";
 
 const Chat = () => {
   const data = useSelector((reducers) => reducers.useSelectedChatReducer);
-
   if (data.type === CHAT_TYPES.PEER) return <PeerChat member={data.member} />;
   else if (data.type === CHAT_TYPES.MULTIPEER)
     return <MultiPeerChat space={data.space} />;
