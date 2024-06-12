@@ -50,6 +50,8 @@ const ChannelLayout = () => {
         })
       );
       setSocketStatus(SOCKET_STATUS.CONNECTED);
+
+      document.title = data.channel.name;
     };
 
     const handleDisconnect = () => {

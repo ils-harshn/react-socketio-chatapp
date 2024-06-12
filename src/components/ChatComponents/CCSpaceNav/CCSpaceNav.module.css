@@ -1,0 +1,13 @@
+.CCSpaceNav {
+  background-color: var(--CNavbar-bg-color);
+  padding: 8px 12px;
+}
+
+.SpaceNameC {
+  display: flex;
+  align-items: center;
+}
+
+.SpaceName {
+  font-size: 18px;
+}
