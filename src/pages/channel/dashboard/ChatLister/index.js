@@ -20,6 +20,7 @@ const Member = ({ member }) => {
 
   return (
     <li
+      title={member.peer}
       className={`${styles.Space} ${
         selected_chat?.member?._id === member._id ? styles.ActiveSpace : ""
       }`}
@@ -60,6 +61,7 @@ const Conversations = () => {
         _id: item.to._id,
         memberName: item.to.memberName,
         role: item.to.role,
+        peer: item.peer,
       }));
 
       setdata(_data);
