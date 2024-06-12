@@ -1,8 +1,34 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./ChatLister.module.css";
 import { useEffect, useState } from "react";
 import CHANNEL_SOCKET_EVENTS from "../../channel_socket_events";
 import { CaretDownIcon, CaretRightIcon } from "../../../../assests/icons";
+import {
+  set_selected_member_chat,
+  set_selected_space_chat,
+} from "../../../../store/actions/SelectedChatActions/index.types";
+
+const Member = ({ member }) => {
+  const dispatch = useDispatch();
+  const selected_chat = useSelector(
+    (reducers) => reducers.useSelectedChatReducer
+  );
+
+  const handleClick = () => {
+    dispatch(set_selected_member_chat(member));
+  };
+
+  return (
+    <li
+      className={`${styles.Space} ${
+        selected_chat?.member?._id === member._id ? styles.ActiveSpace : ""
+      }`}
+      onClick={handleClick}
+    >
+      {member.memberName}
+    </li>
+  );
+};
 
 const Conversations = () => {
   const { socket } = useSelector((reducers) => reducers.useSocketReducer);
@@ -57,6 +83,7 @@ const Conversations = () => {
       );
     };
   }, [socket]);
+
   return (
     <div className={styles.SpacesContainer}>
       <div
@@ -75,13 +102,32 @@ const Conversations = () => {
       {open ? (
         <ul className={styles.SpacesListContainer}>
           {data.map((member) => (
-            <li className={styles.Space} key={member._id}>
-              {member.memberName}
-            </li>
+            <Member member={member} key={member._id} />
           ))}
         </ul>
       ) : null}
     </div>
+  );
+};
+
+const Space = ({ data }) => {
+  const dispatch = useDispatch();
+  const selected_chat = useSelector(
+    (reducers) => reducers.useSelectedChatReducer
+  );
+  const handleClick = () => {
+    dispatch(set_selected_space_chat(data.space));
+  };
+  return (
+    <li
+      className={`${styles.Space} ${
+        selected_chat?.space?._id === data.space._id ? styles.ActiveSpace : ""
+      }`}
+      key={data.space._id}
+      onClick={handleClick}
+    >
+      {data.space.name}
+    </li>
   );
 };
 
@@ -120,9 +166,7 @@ const Spaces = () => {
       {open ? (
         <ul className={styles.SpacesListContainer}>
           {data.map((item) => (
-            <li className={styles.Space} key={item.space._id}>
-              {item.space.name}
-            </li>
+            <Space data={item} key={item.space._id} />
           ))}
         </ul>
       ) : null}

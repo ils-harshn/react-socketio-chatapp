@@ -64,3 +64,8 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.ActiveSpace {
+  font-weight: 600;
+  color: white;
+}
