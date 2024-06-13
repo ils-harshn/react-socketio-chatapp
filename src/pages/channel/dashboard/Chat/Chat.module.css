@@ -8,3 +8,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.MessagesContainer {
+  height: calc(100vh - 320px);
+  padding: 20px;
+}
+
+.MessageInputContainer {
+  padding: 20px;
+  height: 152px;
+}

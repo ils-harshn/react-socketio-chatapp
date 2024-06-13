@@ -47,7 +47,10 @@ const Conversations = () => {
         });
 
         if (isConversationOnFE) return prev;
-        return [...prev, convers.member];
+        return [
+          ...prev,
+          { ...convers.member, peer: convers.conversation.peer },
+        ];
       });
     };
 
