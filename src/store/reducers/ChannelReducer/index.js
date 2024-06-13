@@ -7,7 +7,6 @@ export function useChannelReducer(state = {}, action) {
     case types.REMOVE_CHANNEL_DATA:
       return {};
     case types.CLEAR_CHANNEL_DASHBOARD_DATA:
-      console.log("channel reducer cleared");
       return {};
     default:
       return state;
