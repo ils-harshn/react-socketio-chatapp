@@ -7,6 +7,7 @@ import {
   set_selected_member_chat,
   set_selected_space_chat,
 } from "../../../../store/actions/SelectedChatActions/index.types";
+import { add_conversations } from "../../../../store/actions/ConversationActions/index.types";
 
 const Member = ({ member }) => {
   const dispatch = useDispatch();
@@ -33,25 +34,17 @@ const Member = ({ member }) => {
 
 const Conversations = () => {
   const { socket } = useSelector((reducers) => reducers.useSocketReducer);
-  const [data, setdata] = useState([]);
+  const data = useSelector((reducers) => reducers.useConversationReducer);
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
     const handleCreateConversation = (convers) => {
-      setdata((prev) => {
-        let isConversationOnFE = false;
-        prev.forEach((item) => {
-          if (item._id === convers.member._id) {
-            isConversationOnFE = true;
-          }
-        });
-
-        if (isConversationOnFE) return prev;
-        return [
-          ...prev,
+      dispatch(
+        add_conversations([
           { ...convers.member, peer: convers.conversation.peer },
-        ];
-      });
+        ])
+      );
     };
 
     socket.on(
@@ -66,8 +59,7 @@ const Conversations = () => {
         role: item.to.role,
         peer: item.peer,
       }));
-
-      setdata(_data);
+      dispatch(add_conversations(_data));
     };
 
     socket.on(
@@ -87,7 +79,7 @@ const Conversations = () => {
         handleCreateConversation
       );
     };
-  }, [socket]);
+  }, [socket, dispatch]);
 
   return (
     <div className={styles.SpacesContainer}>
@@ -106,9 +98,11 @@ const Conversations = () => {
       </div>
       {open ? (
         <ul className={styles.SpacesListContainer}>
-          {data.map((member) => (
-            <Member member={member} key={member._id} />
-          ))}
+          {Object.values(data)
+            .sort((a, b) => a.memberName.localeCompare(b.memberName))
+            .map((member) => (
+              <Member member={member} key={member._id} />
+            ))}
         </ul>
       ) : null}
     </div>

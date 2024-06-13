@@ -52,7 +52,7 @@
 }
 
 .Space:hover {
-  background-color: #3f3f3f;
+  background-color: #3f3f3f86;
   color: rgb(214, 214, 214);
 }
 
@@ -68,4 +68,5 @@
 .ActiveSpace {
   font-weight: 600;
   color: white;
+  background-color: #3f3f3f;
 }
