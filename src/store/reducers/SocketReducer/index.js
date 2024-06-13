@@ -6,6 +6,8 @@ export function useSocketReducer(state = {}, action) {
       return action.payload;
     case types.REMOVE_SOCKET:
       return {};
+    case types.CLEAR_CHANNEL_DASHBOARD_DATA:
+      return {};
     default:
       return state;
   }

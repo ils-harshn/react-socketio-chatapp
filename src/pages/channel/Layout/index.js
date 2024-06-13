@@ -4,17 +4,12 @@ import { io } from "socket.io-client";
 import notify from "../../../utils/notify";
 import { FullScreenLoader } from "../../../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  remove_socket,
-  set_socket,
-} from "../../../store/actions/SocketActions/index.types";
+import { set_socket } from "../../../store/actions/SocketActions/index.types";
 import WebTokenStorer from "../../../utils/webTokenStorer";
 import ROUTES from "../../../router/ROUTES";
-import {
-  remove_channel_data,
-  set_channel_data,
-} from "../../../store/actions/ChannelActions/index.types";
+import { set_channel_data } from "../../../store/actions/ChannelActions/index.types";
 import CHANNEL_SOCKET_EVENTS from "../channel_socket_events";
+import { CLEAR_CHANNEL_DASHBOARD_DATA } from "../../../store/actions/index.types";
 
 const SOCKET_STATUS = {
   CONNECTIING: 0,
@@ -71,8 +66,7 @@ const ChannelLayout = () => {
       socket.off(CHANNEL_SOCKET_EVENTS.DISCONNECT, handleDisconnect);
       socket.off(CHANNEL_SOCKET_EVENTS.CONNECT_ERROR, handleConnectError);
       socket.close();
-      dispatch(remove_socket());
-      dispatch(remove_channel_data());
+      dispatch({ type: CLEAR_CHANNEL_DASHBOARD_DATA });
     };
   }, [channelId, dispatch, user._id, user.email]);
 

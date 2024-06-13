@@ -15,6 +15,8 @@ export function useConversationReducer(state = {}, action) {
         ...action.payload,
         ...state,
       };
+    case types.CLEAR_CHANNEL_DASHBOARD_DATA:
+      return {};
     default:
       return state;
   }
