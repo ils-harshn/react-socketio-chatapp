@@ -43,6 +43,7 @@
 }
 
 .DmContainer {
+  cursor: pointer;
   display: flex;
   padding: 16px 20px;
   border-bottom: 1px solid rgb(55, 55, 55);
@@ -70,8 +71,16 @@
 .DmContent {
   color: #d1d2d3;
   font-size: 15px;
+  white-space: pre-line;
+  text-wrap: wrap;
+  word-wrap: break-word;
+  width: calc(100vw - 480px);
 }
 
 .YOU_AVATAR {
   background-color: rgb(67, 116, 124) !important;
+}
+
+.DmContainer:hover {
+  background-color: #383838;
 }

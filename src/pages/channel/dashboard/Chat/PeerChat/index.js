@@ -57,6 +57,7 @@ const MessageInput = ({ member, of }) => {
   const { socket } = useSelector((reducers) => reducers.useSocketReducer);
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+  const textareaRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,10 +77,16 @@ const MessageInput = ({ member, of }) => {
     }
   };
 
+  useEffect(() => {
+    textareaRef.current?.focus();
+    setText("");
+  }, [textareaRef, of]);
+
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.MessageInputContainer}>
         <textarea
+          ref={textareaRef}
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
