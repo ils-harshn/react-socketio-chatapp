@@ -1,16 +1,39 @@
+import { useState } from "react";
 import CCMemberNav from "../../../../../components/ChatComponents/CCMemberNav";
-import TextInput from "../../../../../components/Input/TextInput";
 import styles from "../Chat.module.css";
 
 const Messages = ({ of }) => {
   return <div className={styles.MessagesContainer}>{of}</div>;
 };
 
-const MessageInput = () => {
+const MessageInput = ({ member }) => {
+  const [text, setText] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted with text:", text);
+    setText("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
-    <div className={styles.MessageInputContainer}>
-      <TextInput width="full" />
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div className={styles.MessageInputContainer}>
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={`Message ${member.memberName}`}
+          className={`${styles.MessageInput} custom-scrollbar`}
+        />
+      </div>
+    </form>
   );
 };
 
@@ -19,7 +42,7 @@ const PeerChat = ({ member }) => {
     <div className={styles.Chat}>
       <CCMemberNav member={member} />
       <Messages of={member.peer} />
-      <MessageInput />
+      <MessageInput member={member} />
     </div>
   );
 };
