@@ -4,6 +4,7 @@ import { useSocketReducer } from "./SocketReducer";
 import { useChannelReducer } from "./ChannelReducer";
 import { useSelectedChatReducer } from "./SelectedChatReducer";
 import { useConversationReducer } from "./ConversationReducer";
+import { useDmsReducer } from "./DmsReducer";
 
 const rootReducer = combineReducers({
   userDataReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   useChannelReducer,
   useSelectedChatReducer,
   useConversationReducer,
+  useDmsReducer,
 });
 
 export default rootReducer;
