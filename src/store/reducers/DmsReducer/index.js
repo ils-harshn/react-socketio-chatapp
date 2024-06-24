@@ -6,6 +6,7 @@ state = {
         messages: [{
             from (member_id): "",
             content (message): "",
+            time: DATE_TIME
         }, ...],
     }...
 } 
@@ -18,6 +19,7 @@ export function useDmsReducer(state = {}, action) {
         state[action.payload.of].messages.push({
           from: action.payload.from,
           content: action.payload.content,
+          time: action.payload.time,
         });
       } else {
         state[action.payload.of] = {
@@ -25,6 +27,7 @@ export function useDmsReducer(state = {}, action) {
             {
               from: action.payload.from,
               content: action.payload.content,
+              time: action.payload.time,
             },
           ],
         };

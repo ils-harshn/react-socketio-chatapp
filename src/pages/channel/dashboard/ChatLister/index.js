@@ -8,6 +8,7 @@ import {
   set_selected_space_chat,
 } from "../../../../store/actions/SelectedChatActions/index.types";
 import { add_conversations } from "../../../../store/actions/ConversationActions/index.types";
+import { add_dm } from "../../../../store/actions/DmsActions/index.types";
 
 const Member = ({ member }) => {
   const dispatch = useDispatch();
@@ -67,6 +68,25 @@ const Conversations = () => {
       handleConversationList
     );
 
+    const handleReceivedDm = (dm) => {
+      if (document.visibilityState === "hidden") {
+        if ("Notification" in window) {
+          Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+              new Notification(data[dm.from].memberName, {
+                body: dm.content,
+              });
+            }
+          });
+        } else {
+          alert("Welcome back! You've returned to the page.");
+        }
+      }
+      dispatch(add_dm(dm.content, dm.from, dm.of));
+    };
+
+    socket.on(CHANNEL_SOCKET_EVENTS.RECEIVE_DM, handleReceivedDm);
+
     socket.emit(CHANNEL_SOCKET_EVENTS.REQ_CONVERSATION_LIST);
 
     return () => {
@@ -78,8 +98,10 @@ const Conversations = () => {
         CHANNEL_SOCKET_EVENTS.RES_CREATE_CONVERSATION,
         handleCreateConversation
       );
+
+      socket.off(CHANNEL_SOCKET_EVENTS.RECEIVE_DM, handleReceivedDm);
     };
-  }, [socket, dispatch]);
+  }, [socket, dispatch, data]);
 
   return (
     <div className={styles.SpacesContainer}>

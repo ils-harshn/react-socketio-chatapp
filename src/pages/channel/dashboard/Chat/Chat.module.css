@@ -10,8 +10,15 @@
 }
 
 .MessagesContainer {
-  height: calc(100vh - 320px);
-  padding: 20px;
+  height: calc(100vh - 280px);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.MessagesContainerInner {
+  max-height: calc(100vh - 280px);
+  overflow: auto;
 }
 
 .MessageInputContainer {
@@ -33,4 +40,38 @@
   resize: none;
   height: 80px;
   font-size: 14px;
+}
+
+.DmContainer {
+  display: flex;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgb(55, 55, 55);
+}
+
+.DmContainer:last-child {
+  border-bottom: none;
+}
+
+.DmAvatar {
+  margin-right: 8px;
+}
+
+.DmFromName {
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.DmTime {
+  font-size: 11px;
+  opacity: 0.65;
+}
+
+.DmContent {
+  color: #d1d2d3;
+  font-size: 15px;
+}
+
+.YOU_AVATAR {
+  background-color: rgb(67, 116, 124) !important;
 }
